@@ -1,0 +1,262 @@
+<!--
+  Copyright 2012 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- Dummy content. -->
+
+
+    <!-- <LinearLayout -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:orientation="vertical" -->
+    <!-- android:padding="16dp" > -->
+
+
+    <!-- <TextView -->
+    <!-- android:id="@android:id/text1" -->
+    <!-- style="?android:textAppearanceLarge" -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_marginBottom="16dp" -->
+    <!-- android:textStyle="bold" /> -->
+
+
+    <!-- <TextView -->
+    <!-- android:id="@id/lotteryContent" -->
+    <!-- style="?android:textAppearanceMedium" -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- /> -->
+    <!-- </LinearLayout> -->
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <TextView
+                android:id="@android:id/text1"
+                style="?android:textAppearanceLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <TextView
+                android:id="@+id/giaiDBLabel"
+                style="@style/GiaiDB"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="@string/giaiDBLabel" />
+
+            <TextView
+                android:id="@+id/giaiDBValue"
+                style="@style/KetquaGiai"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <TextView
+                android:id="@+id/giaiNhatLabel"
+                style="@style/GiaiBinhthuong"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="@string/giaiNhatLabel"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/giaiNhatValue"
+                style="@style/KetquaGiai"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <TextView
+                android:id="@+id/giaiNhiLabel"
+                style="@style/GiaiBinhthuong"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="@string/giaiNhiLabel"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/giaiNhiValue"
+                style="@style/KetquaGiai"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <TextView
+                android:id="@+id/giaiBaLabel"
+                style="@style/GiaiBinhthuong"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="@string/giaiBaLabel"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/giaiBaValue"
+                style="@style/KetquaGiai"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <TextView
+                android:id="@+id/giaiTuLabel"
+                style="@style/GiaiBinhthuong"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="@string/giaiBaLabel"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/giaiTuValue"
+                style="@style/KetquaGiai"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <TextView
+                android:id="@+id/giaiNamLabel"
+                style="@style/GiaiBinhthuong"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="@string/giaiNamLabel"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/giaiNamValue"
+                style="@style/KetquaGiai"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow8"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dip" >
+
+            <TextView
+                android:id="@+id/giaiSauLabel"
+                style="@style/GiaiBinhthuong"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="@string/giaiSauLabel"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/giaiSauValue"
+                style="@style/KetquaGiai"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <TextView
+                android:id="@+id/giaiBayLabel"
+                style="@style/GiaiBinhthuong"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:text="@string/giaiBayLabel"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/giaiBayValue"
+                style="@style/KetquaGiai"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>
