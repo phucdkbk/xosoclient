@@ -12,12 +12,12 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-  -->
+-->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Titles -->
-    <string name="app_name">Animations Demo</string>
+    <string name="app_name">Xổ số miền Bắc</string>
     <string name="title_crossfade">Simple Crossfade</string>
     <string name="title_card_flip">Card Flip</string>
     <string name="title_screen_slide">Screen Slide</string>
@@ -34,13 +34,13 @@
     <string name="action_next">Next</string>
     <string name="action_finish">Finish</string>
     <string name="action_info">Photo info</string>
-    <string name="action_photo">View photo</string>    
+    <string name="action_photo">View photo</string>
 
     <!-- Accessibility-only descriptions -->
     <string name="description_image_1">Image 1</string>
     <string name="description_image_2">Image 2</string>
     <string name="description_zoom_touch_close">Expanded image (touch to close)</string>
-    
+
     <!-- Lottery resul label -->
     <string name="giaiDBLabel">Giải đặc biệt</string>
     <string name="giaiNhatLabel">Giải nhất</string>
@@ -49,11 +49,25 @@
     <string name="giaiTuLabel">Giải tư</string>
     <string name="giaiNamLabel">Giải năm</string>
     <string name="giaiSauLabel">Giải sáu</string>
-    <string name="giaiBayLabel">Giải bảy</string>    
+    <string name="giaiBayLabel">Giải bảy</string>
+    <string name="resultDate">Kết quả ngày:</string>
+    <string name="firstNumber">Đầu</string>
+    <string name="lastNumber">Đuôi</string>
+    <string name="dau0">0</string>
+    <string name="dau1">1</string>
+    <string name="dau2">2</string>
+    <string name="dau3">3</string>
+    <string name="dau4">4</string>
+    <string name="dau5">5</string>
+    <string name="dau6">6</string>
+    <string name="dau7">7</string>
+    <string name="dau8">8</string>
+    <string name="dau9">9</string>
 
     <!-- Other strings -->
-    
+
     <string name="hello">hello</string>
+    <string name="statisticResult">Thống kê theo đầu số</string>
     <string name="card_back_title">Angry Red Android</string>
     <string name="card_back_description"><![CDATA[Lorem ipsum dolor sit]]></string>
     <string name="lorem_ipsum"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et magna ut erat elementum cursus in quis ipsum. Nam faucibus ultrices eros, vel tempor leo semper sit amet. Duis magna quam, congue vitae interdum nec, condimentum ut lectus. Sed commodo venenatis eros a dignissim. Nunc adipiscing turpis nec magna venenatis at ultricies ipsum bibendum. Sed volutpat urna quis nisi vulputate egestas. Etiam eu dui a enim lacinia dapibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n\nPhasellus orci mi, eleifend nec congue id, volutpat at neque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer semper velit vel leo rutrum sed fermentum elit porta.]]></string>

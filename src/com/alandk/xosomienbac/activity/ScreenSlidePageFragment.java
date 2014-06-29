@@ -24,7 +24,12 @@ import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -40,7 +45,6 @@ import android.widget.TextView;
 import com.alandk.xosomienbac.common.DisplayResult;
 import com.alandk.xosomienbac.common.Result;
 import com.alandk.xosomienbac.database.LotteryDBResult;
-import com.alandk.xosomienbac.database.LotteryDataSource;
 import com.example.xosomienbac.R;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -98,7 +102,13 @@ public class ScreenSlidePageFragment extends Fragment {
 		ViewGroup rootView = (ViewGroup) inflater.inflate(
 				R.layout.fragment_screen_slide_page, container, false);
 		initDiplayResult(rootView);
-		int dateInt = 20090101 + mPageNumber;
+
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, 2009);
+		cal.add(Calendar.DATE, mPageNumber - LotteryResultActivity.NUM_PAGES
+				/ 2);
+		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		int dateInt = Integer.valueOf(df.format(cal.getTime()));
 
 		LotteryDBResult lotteryDBResult = LotteryResultActivity
 				.getLotteryDBResultByDate(dateInt);
@@ -118,18 +128,37 @@ public class ScreenSlidePageFragment extends Fragment {
 				// display error
 			}
 		}
-
-		// lotteryContent.setText("Kết quả xổ số");
+		//
 		// Set the title view to show the page number.
-		TextView textView = (TextView) rootView
-				.findViewById(android.R.id.text1);
-		// textView.setText(getString(R.string.title_template_step, mPageNumber
-		// + 1));
-		textView.setText("Kết quả ngày: " + dateInt);
-
+		TextView textView = (TextView) rootView.findViewById(R.id.currentDate);
+		textView.setText(getDisplayDateFromDateInt(dateInt));
 		return rootView;
 	}
 
+	private String getDisplayDateFromDateInt(int dateInt) {
+		String displayDate = "";
+		int date = dateInt % 100;
+		int month = dateInt / 100 % 100;
+		int year = dateInt / 10000;
+		if (date < 10) {
+			displayDate += ("0" + date + "/");
+		} else {
+			displayDate += (date + "/");
+		}
+		if (month < 10) {
+			displayDate += ("0" + month + "/");
+		} else {
+			displayDate += (month + "/");
+		}
+		displayDate += year;
+		return displayDate;
+	}
+
+	/**
+	 * initialize display view on activity
+	 * 
+	 * @param rootView
+	 */
 	private void initDiplayResult(ViewGroup rootView) {
 		displayResult = new DisplayResult();
 		displayResult.setGiaiDB((TextView) rootView
@@ -148,6 +177,27 @@ public class ScreenSlidePageFragment extends Fragment {
 				.findViewById(R.id.giaiSauValue));
 		displayResult.setGiaiBay((TextView) rootView
 				.findViewById(R.id.giaiBayValue));
+		
+		displayResult.setDau0((TextView) rootView
+				.findViewById(R.id.dau0));
+		displayResult.setDau1((TextView) rootView
+				.findViewById(R.id.dau1));
+		displayResult.setDau2((TextView) rootView
+				.findViewById(R.id.dau2));
+		displayResult.setDau3((TextView) rootView
+				.findViewById(R.id.dau3));
+		displayResult.setDau4((TextView) rootView
+				.findViewById(R.id.dau4));
+		displayResult.setDau5((TextView) rootView
+				.findViewById(R.id.dau5));
+		displayResult.setDau6((TextView) rootView
+				.findViewById(R.id.dau6));
+		displayResult.setDau7((TextView) rootView
+				.findViewById(R.id.dau7));
+		displayResult.setDau8((TextView) rootView
+				.findViewById(R.id.dau8));
+		displayResult.setDau9((TextView) rootView
+				.findViewById(R.id.dau9));
 	}
 
 	/**
@@ -157,6 +207,13 @@ public class ScreenSlidePageFragment extends Fragment {
 		return mPageNumber;
 	}
 
+	/**
+	 * download given url, return string content
+	 * 
+	 * @param myurl
+	 * @return
+	 * @throws IOException
+	 */
 	private String downloadUrl(String myurl) throws IOException {
 		InputStream is = null;
 		// Only display the first 500 characters of the retrieved
@@ -180,7 +237,8 @@ public class ScreenSlidePageFragment extends Fragment {
 			String contentAsString = readIt(is, len);
 			return contentAsString;
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.e("E", e.getMessage());
+			throw e;
 		}
 		// Makes sure that the InputStream is closed after the app is
 		// finished using it.
@@ -189,7 +247,6 @@ public class ScreenSlidePageFragment extends Fragment {
 				is.close();
 			}
 		}
-		return "";
 	}
 
 	public String readIt(InputStream stream, int len) throws IOException,
@@ -222,17 +279,31 @@ public class ScreenSlidePageFragment extends Fragment {
 		// onPostExecute displays the results of the AsyncTask.
 		@Override
 		protected void onPostExecute(String result) {
-			Result lotteryResult = convertFromJsonToResultObject(result);
-			Gson gson = new Gson();
-			if (lotteryResult.isHasFullValue()) {
-				LotteryResultActivity.createLotteryDBResult(date,
-						gson.toJson(lotteryResult));
+			try {
+				result = result.trim();
+				if (result != null && !result.isEmpty() && result.length() > 2) {
+					Result lotteryResult = convertFromJsonToResultObject(result);
+					Gson gson = new Gson();
+					if (lotteryResult.isHasFullValue()) {
+						LotteryResultActivity.createLotteryDBResult(date,
+								gson.toJson(lotteryResult));
+					}
+					convertToDisplayResult(lotteryResult);
+				}
+			} catch (Exception e) {
+				Log.e("E", e.getMessage());
+				throw e;
 			}
-			convertToDisplayResult(lotteryResult);
-		}
 
+		}
 	}
 
+	/**
+	 * Convert from json to lottery result logic object
+	 * 
+	 * @param result
+	 * @return
+	 */
 	private Result convertFromJsonToResultObject(String result) {
 		Gson gson = new Gson();
 		JsonReader reader = new JsonReader(new StringReader(result));
@@ -241,6 +312,11 @@ public class ScreenSlidePageFragment extends Fragment {
 		return lotteryResult;
 	}
 
+	/**
+	 * Convert from lottery result logic object to display object
+	 * 
+	 * @param lotteryResult
+	 */
 	private void convertToDisplayResult(Result lotteryResult) {
 		displayResult.getGiaiDB().setText(lotteryResult.getGiaiDB());
 		displayResult.getGiaiNhat().setText(lotteryResult.getGiaiNhat());
@@ -250,5 +326,17 @@ public class ScreenSlidePageFragment extends Fragment {
 		displayResult.getGiaiNam().setText(lotteryResult.getGiaiNam());
 		displayResult.getGiaiSau().setText(lotteryResult.getGiaiSau());
 		displayResult.getGiaiBay().setText(lotteryResult.getGiaiBay());
+		
+		lotteryResult.caculateDauso();		
+		displayResult.getDau0().setText(lotteryResult.getDau0());
+		displayResult.getDau1().setText(lotteryResult.getDau1());
+		displayResult.getDau2().setText(lotteryResult.getDau2());
+		displayResult.getDau3().setText(lotteryResult.getDau3());
+		displayResult.getDau4().setText(lotteryResult.getDau4());
+		displayResult.getDau5().setText(lotteryResult.getDau5());
+		displayResult.getDau6().setText(lotteryResult.getDau6());
+		displayResult.getDau7().setText(lotteryResult.getDau7());
+		displayResult.getDau8().setText(lotteryResult.getDau8());
+		displayResult.getDau9().setText(lotteryResult.getDau9());		
 	}
 }

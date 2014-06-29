@@ -21,31 +21,6 @@
 
     <!-- Dummy content. -->
 
-
-    <!-- <LinearLayout -->
-    <!-- android:layout_width="match_parent" -->
-    <!-- android:layout_height="wrap_content" -->
-    <!-- android:orientation="vertical" -->
-    <!-- android:padding="16dp" > -->
-
-
-    <!-- <TextView -->
-    <!-- android:id="@android:id/text1" -->
-    <!-- style="?android:textAppearanceLarge" -->
-    <!-- android:layout_width="match_parent" -->
-    <!-- android:layout_height="wrap_content" -->
-    <!-- android:layout_marginBottom="16dp" -->
-    <!-- android:textStyle="bold" /> -->
-
-
-    <!-- <TextView -->
-    <!-- android:id="@id/lotteryContent" -->
-    <!-- style="?android:textAppearanceMedium" -->
-    <!-- android:layout_width="match_parent" -->
-    <!-- android:layout_height="wrap_content" -->
-    <!-- /> -->
-    <!-- </LinearLayout> -->
-
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="fill_parent"
@@ -55,22 +30,22 @@
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dip" >
+            android:gravity="center"
+            android:padding="0dip" >
 
             <TextView
-                android:id="@android:id/text1"
-                style="?android:textAppearanceLarge"
-                android:layout_width="match_parent"
+                android:id="@+id/currentDate"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="6dp"
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dip" >
+            android:padding="0dip" >
 
             <TextView
                 android:id="@+id/giaiDBLabel"
@@ -86,14 +61,14 @@
                 style="@style/KetquaGiai"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dip" >
+            android:padding="0dip" >
 
             <TextView
                 android:id="@+id/giaiNhatLabel"
@@ -102,22 +77,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
-                android:text="@string/giaiNhatLabel"
-                android:textStyle="bold" />
+                android:text="@string/giaiNhatLabel" />
 
             <TextView
                 android:id="@+id/giaiNhatValue"
                 style="@style/KetquaGiai"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dip" >
+            android:padding="0dip" >
 
             <TextView
                 android:id="@+id/giaiNhiLabel"
@@ -126,22 +100,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
-                android:text="@string/giaiNhiLabel"
-                android:textStyle="bold" />
+                android:text="@string/giaiNhiLabel" />
 
             <TextView
                 android:id="@+id/giaiNhiValue"
                 style="@style/KetquaGiai"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dip" >
+            android:padding="0dip" >
 
             <TextView
                 android:id="@+id/giaiBaLabel"
@@ -150,22 +123,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
-                android:text="@string/giaiBaLabel"
-                android:textStyle="bold" />
+                android:text="@string/giaiBaLabel" />
 
             <TextView
                 android:id="@+id/giaiBaValue"
                 style="@style/KetquaGiai"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dip" >
+            android:padding="0dip" >
 
             <TextView
                 android:id="@+id/giaiTuLabel"
@@ -174,22 +146,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
-                android:text="@string/giaiBaLabel"
-                android:textStyle="bold" />
+                android:text="@string/giaiBaLabel" />
 
             <TextView
                 android:id="@+id/giaiTuValue"
                 style="@style/KetquaGiai"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dip" >
+            android:padding="0dip" >
 
             <TextView
                 android:id="@+id/giaiNamLabel"
@@ -198,15 +169,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
-                android:text="@string/giaiNamLabel"
-                android:textStyle="bold" />
+                android:text="@string/giaiNamLabel" />
 
             <TextView
                 android:id="@+id/giaiNamValue"
                 style="@style/KetquaGiai"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </TableRow>
 
         <TableRow
@@ -214,7 +184,7 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="5dip" >
+            android:padding="0dip" >
 
             <TextView
                 android:id="@+id/giaiSauLabel"
@@ -223,22 +193,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
-                android:text="@string/giaiSauLabel"
-                android:textStyle="bold" />
+                android:text="@string/giaiSauLabel" />
 
             <TextView
                 android:id="@+id/giaiSauValue"
                 style="@style/KetquaGiai"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dip" >
+            android:padding="0dip" >
 
             <TextView
                 android:id="@+id/giaiBayLabel"
@@ -247,15 +216,258 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="1"
-                android:text="@string/giaiBayLabel"
-                android:textStyle="bold" />
+                android:text="@string/giaiBayLabel" />
 
             <TextView
                 android:id="@+id/giaiBayValue"
                 style="@style/KetquaGiai"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/statisticResult" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dip" >
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/firstNumber" />
+
+            <TextView
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border"
+                android:text="@string/lastNumber" />
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/firstNumber" />
+
+            <TextView
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border"
+                android:text="@string/lastNumber" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dip" >
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/dau0" />
+
+            <TextView
+                android:id="@+id/dau0"
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border" />
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/dau5" />
+
+            <TextView
+                android:id="@+id/dau5"
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:padding="0dip" >
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/dau1" />
+
+            <TextView
+                android:id="@+id/dau1"
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border" />
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/dau6" />
+
+            <TextView
+                android:id="@+id/dau6"
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:padding="0dip" >
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/dau2" />
+
+            <TextView
+                android:id="@+id/dau2"
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border" />
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/dau7" />
+
+            <TextView
+                android:id="@+id/dau7"
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:padding="0dip" >
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/dau3" />
+
+            <TextView
+                android:id="@+id/dau3"
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border" />
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/dau8" />
+
+            <TextView
+                android:id="@+id/dau8"
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:padding="0dip" >
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/dau4" />
+
+            <TextView
+                android:id="@+id/dau4"
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border" />
+
+            <TextView
+                style="@style/Dauso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="@string/dau9" />
+
+            <TextView
+                android:id="@+id/dau9"
+                style="@style/Duoiso"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border" />
         </TableRow>
     </TableLayout>
 

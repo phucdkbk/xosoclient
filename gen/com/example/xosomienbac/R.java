@@ -11,7 +11,9 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int border=0x7f020000;
+        public static final int cell_shape=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
         public static final int action_flip=0x7f040001;
@@ -24,40 +26,51 @@ public final class R {
     
          */
         public static final int action_next=0x7f040000;
-        public static final int action_previous=0x7f040023;
-        public static final int add=0x7f040020;
+        public static final int action_previous=0x7f04002e;
+        public static final int add=0x7f04002b;
         public static final int content=0x7f040004;
-        public static final int delete=0x7f040021;
-        public static final int giaiBaLabel=0x7f040011;
-        public static final int giaiBaValue=0x7f040012;
-        public static final int giaiBayLabel=0x7f04001d;
-        public static final int giaiBayValue=0x7f04001e;
-        public static final int giaiDBLabel=0x7f040008;
-        public static final int giaiDBValue=0x7f040009;
-        public static final int giaiNamLabel=0x7f040017;
-        public static final int giaiNamValue=0x7f040018;
-        public static final int giaiNhatLabel=0x7f04000b;
-        public static final int giaiNhatValue=0x7f04000c;
-        public static final int giaiNhiLabel=0x7f04000e;
-        public static final int giaiNhiValue=0x7f04000f;
-        public static final int giaiSauLabel=0x7f04001a;
-        public static final int giaiSauValue=0x7f04001b;
-        public static final int giaiTuLabel=0x7f040014;
-        public static final int giaiTuValue=0x7f040015;
-        public static final int group=0x7f04001f;
+        public static final int currentDate=0x7f040007;
+        public static final int dau0=0x7f040020;
+        public static final int dau1=0x7f040022;
+        public static final int dau2=0x7f040024;
+        public static final int dau3=0x7f040026;
+        public static final int dau4=0x7f040028;
+        public static final int dau5=0x7f040021;
+        public static final int dau6=0x7f040023;
+        public static final int dau7=0x7f040025;
+        public static final int dau8=0x7f040027;
+        public static final int dau9=0x7f040029;
+        public static final int delete=0x7f04002c;
+        public static final int giaiBaLabel=0x7f040012;
+        public static final int giaiBaValue=0x7f040013;
+        public static final int giaiBayLabel=0x7f04001e;
+        public static final int giaiBayValue=0x7f04001f;
+        public static final int giaiDBLabel=0x7f040009;
+        public static final int giaiDBValue=0x7f04000a;
+        public static final int giaiNamLabel=0x7f040018;
+        public static final int giaiNamValue=0x7f040019;
+        public static final int giaiNhatLabel=0x7f04000c;
+        public static final int giaiNhatValue=0x7f04000d;
+        public static final int giaiNhiLabel=0x7f04000f;
+        public static final int giaiNhiValue=0x7f040010;
+        public static final int giaiSauLabel=0x7f04001b;
+        public static final int giaiSauValue=0x7f04001c;
+        public static final int giaiTuLabel=0x7f040015;
+        public static final int giaiTuValue=0x7f040016;
+        public static final int group=0x7f04002a;
         public static final int lotteryContent=0x7f040002;
-        public static final int myText=0x7f040022;
+        public static final int myText=0x7f04002d;
         public static final int pager=0x7f040003;
         public static final int tableLayout1=0x7f040005;
         public static final int tableRow1=0x7f040006;
-        public static final int tableRow2=0x7f040007;
-        public static final int tableRow3=0x7f04000a;
-        public static final int tableRow4=0x7f04000d;
-        public static final int tableRow5=0x7f040010;
-        public static final int tableRow6=0x7f040013;
-        public static final int tableRow7=0x7f040016;
-        public static final int tableRow8=0x7f040019;
-        public static final int tableRow9=0x7f04001c;
+        public static final int tableRow2=0x7f040008;
+        public static final int tableRow3=0x7f04000b;
+        public static final int tableRow4=0x7f04000e;
+        public static final int tableRow5=0x7f040011;
+        public static final int tableRow6=0x7f040014;
+        public static final int tableRow7=0x7f040017;
+        public static final int tableRow8=0x7f04001a;
+        public static final int tableRow9=0x7f04001d;
     }
     public static final class layout {
         public static final int activity_screen_slide=0x7f030000;
@@ -82,13 +95,24 @@ public final class R {
         /**  Titles 
          */
         public static final int app_name=0x7f050000;
-        public static final int card_back_description=0x7f05001c;
-        public static final int card_back_title=0x7f05001b;
+        public static final int card_back_description=0x7f05002a;
+        public static final int card_back_title=0x7f050029;
+        public static final int dau0=0x7f05001d;
+        public static final int dau1=0x7f05001e;
+        public static final int dau2=0x7f05001f;
+        public static final int dau3=0x7f050020;
+        public static final int dau4=0x7f050021;
+        public static final int dau5=0x7f050022;
+        public static final int dau6=0x7f050023;
+        public static final int dau7=0x7f050024;
+        public static final int dau8=0x7f050025;
+        public static final int dau9=0x7f050026;
         /**  Accessibility-only descriptions 
          */
         public static final int description_image_1=0x7f05000f;
         public static final int description_image_2=0x7f050010;
         public static final int description_zoom_touch_close=0x7f050011;
+        public static final int firstNumber=0x7f05001b;
         public static final int giaiBaLabel=0x7f050015;
         public static final int giaiBayLabel=0x7f050019;
         /**  Lottery resul label 
@@ -101,8 +125,11 @@ public final class R {
         public static final int giaiTuLabel=0x7f050016;
         /**  Other strings 
          */
-        public static final int hello=0x7f05001a;
-        public static final int lorem_ipsum=0x7f05001d;
+        public static final int hello=0x7f050027;
+        public static final int lastNumber=0x7f05001c;
+        public static final int lorem_ipsum=0x7f05002b;
+        public static final int resultDate=0x7f05001a;
+        public static final int statisticResult=0x7f050028;
         public static final int title_card_flip=0x7f050002;
         public static final int title_crossfade=0x7f050001;
         public static final int title_layout_changes=0x7f050005;
@@ -115,11 +142,15 @@ public final class R {
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
+
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
+
 
         
 
@@ -139,6 +170,8 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+        public static final int Dauso=0x7f060006;
+        public static final int Duoiso=0x7f060005;
         public static final int GiaiBinhthuong=0x7f060003;
         public static final int GiaiDB=0x7f060002;
         public static final int KetquaGiai=0x7f060004;

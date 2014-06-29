@@ -30,7 +30,7 @@ public class LotteryResultActivity extends Activity {
 	/**
 	 * The number of pages (wizard steps) to show in this demo.
 	 */
-	private static final int NUM_PAGES = 100;
+	public static final int NUM_PAGES = 100;
 
 	/**
 	 * The pager widget, which handles animation and allows swiping horizontally
@@ -72,6 +72,7 @@ public class LotteryResultActivity extends Activity {
 				invalidateOptionsMenu();
 			}
 		});
+		mPager.setCurrentItem(NUM_PAGES/2, true);
 	}
 
 	@Override
