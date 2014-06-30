@@ -15,17 +15,17 @@ public class BootUpReceiver extends BroadcastReceiver {
 		// i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		// context.startActivity(i);
 
-//		Intent alarmIntent = new Intent(context, AlarmReceiver.class);
-//		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-//				alarmIntent, 0);
-//
-//		AlarmManager manager = (AlarmManager) context
-//				.getSystemService(Context.ALARM_SERVICE);
-//		int interval = 2000; // 10 seconds
-//
-//		manager.setRepeating(AlarmManager.RTC_WAKEUP,
-//				System.currentTimeMillis(), interval, pendingIntent);
-//		Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
+		Intent alarmIntent = new Intent(context, AlarmReceiver.class);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+				alarmIntent, 0);
+
+		AlarmManager manager = (AlarmManager) context
+				.getSystemService(Context.ALARM_SERVICE);
+		int interval = 6000; // 10 seconds
+
+		manager.setRepeating(AlarmManager.RTC_WAKEUP,
+				System.currentTimeMillis(), interval, pendingIntent);
+		Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
 	}
 
 }

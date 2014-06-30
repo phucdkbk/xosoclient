@@ -26,8 +26,8 @@ public final class R {
     
          */
         public static final int action_next=0x7f040000;
-        public static final int action_previous=0x7f04002e;
-        public static final int add=0x7f04002b;
+        public static final int action_previous=0x7f04002f;
+        public static final int add=0x7f04002c;
         public static final int content=0x7f040004;
         public static final int currentDate=0x7f040007;
         public static final int dau0=0x7f040020;
@@ -40,7 +40,7 @@ public final class R {
         public static final int dau7=0x7f040025;
         public static final int dau8=0x7f040027;
         public static final int dau9=0x7f040029;
-        public static final int delete=0x7f04002c;
+        public static final int delete=0x7f04002d;
         public static final int giaiBaLabel=0x7f040012;
         public static final int giaiBaValue=0x7f040013;
         public static final int giaiBayLabel=0x7f04001e;
@@ -57,9 +57,9 @@ public final class R {
         public static final int giaiSauValue=0x7f04001c;
         public static final int giaiTuLabel=0x7f040015;
         public static final int giaiTuValue=0x7f040016;
-        public static final int group=0x7f04002a;
+        public static final int group=0x7f04002b;
         public static final int lotteryContent=0x7f040002;
-        public static final int myText=0x7f04002d;
+        public static final int myText=0x7f04002e;
         public static final int pager=0x7f040003;
         public static final int tableLayout1=0x7f040005;
         public static final int tableRow1=0x7f040006;
@@ -71,12 +71,14 @@ public final class R {
         public static final int tableRow7=0x7f040017;
         public static final int tableRow8=0x7f04001a;
         public static final int tableRow9=0x7f04001d;
+        public static final int text1=0x7f04002a;
     }
     public static final class layout {
         public static final int activity_screen_slide=0x7f030000;
         public static final int fragment_screen_slide_page=0x7f030001;
-        public static final int sqlite=0x7f030002;
-        public static final int test_internet=0x7f030003;
+        public static final int notification_one=0x7f030002;
+        public static final int sqlite=0x7f030003;
+        public static final int test_internet=0x7f030004;
     }
     public static final class menu {
         public static final int activity_screen_slide=0x7f070000;

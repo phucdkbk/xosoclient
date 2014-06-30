@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="16"
         android:targetSdkVersion="19" />
 
     <application
@@ -37,6 +37,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        
+        <activity android:name="com.alandk.xosomienbac.sync.NotificationOne"
+             android:label="Details of Notification One"
+             android:parentActivityName="com.alandk.xosomienbac.activity.LotteryResultActivity">
+        	<meta-data
+        		android:name="android.support.PARENT_ACTIVITY"
+        		android:value="com.alandk.xosomienbac.activity.LotteryResultActivity"/>
         </activity>
 
         <!-- <activity -->
