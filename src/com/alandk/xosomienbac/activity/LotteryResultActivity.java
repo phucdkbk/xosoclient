@@ -3,13 +3,17 @@ package com.alandk.xosomienbac.activity;
 import com.alandk.xosomienbac.activity.ScreenSlidePageFragment;
 import com.alandk.xosomienbac.database.LotteryDBResult;
 import com.alandk.xosomienbac.database.LotteryDataSource;
+import com.alandk.xosomienbac.sync.AlarmReceiver;
 //import com.alandk.xosomienbac.ScreenSlideActivity.ScreenSlidePagerAdapter;
 import com.example.xosomienbac.R;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -18,6 +22,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class LotteryResultActivity extends Activity {
 
@@ -42,6 +47,20 @@ public class LotteryResultActivity extends Activity {
 	 * The pager adapter, which provides the pages to the view pager widget.
 	 */
 	private PagerAdapter mPagerAdapter;
+	
+	private void testAlamManager(Context context){
+		Intent alarmIntent = new Intent(context, AlarmReceiver.class);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+				alarmIntent, 0);
+
+		AlarmManager manager = (AlarmManager) context
+				.getSystemService(Context.ALARM_SERVICE);
+		int interval = 2000; // 10 seconds
+
+		manager.setRepeating(AlarmManager.RTC_WAKEUP,
+				System.currentTimeMillis(), interval, pendingIntent);
+		Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +69,9 @@ public class LotteryResultActivity extends Activity {
 		lotteryDataSource = new LotteryDataSource(this);
 		lotteryDataSource.open();
 
+		
+		testAlamManager(this);		
+		
 		// test download result
 		// textView = (TextView) findViewById(R.id.myText);
 		// new
