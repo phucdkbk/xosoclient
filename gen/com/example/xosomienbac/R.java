@@ -97,8 +97,8 @@ public final class R {
         /**  Titles 
          */
         public static final int app_name=0x7f050000;
-        public static final int card_back_description=0x7f05002a;
-        public static final int card_back_title=0x7f050029;
+        public static final int card_back_description=0x7f05002b;
+        public static final int card_back_title=0x7f05002a;
         public static final int dau0=0x7f05001d;
         public static final int dau1=0x7f05001e;
         public static final int dau2=0x7f05001f;
@@ -127,11 +127,12 @@ public final class R {
         public static final int giaiTuLabel=0x7f050016;
         /**  Other strings 
          */
-        public static final int hello=0x7f050027;
+        public static final int hello=0x7f050028;
         public static final int lastNumber=0x7f05001c;
-        public static final int lorem_ipsum=0x7f05002b;
+        public static final int lorem_ipsum=0x7f05002c;
+        public static final int newResult=0x7f050027;
         public static final int resultDate=0x7f05001a;
-        public static final int statisticResult=0x7f050028;
+        public static final int statisticResult=0x7f050029;
         public static final int title_card_flip=0x7f050002;
         public static final int title_crossfade=0x7f050001;
         public static final int title_layout_changes=0x7f050005;

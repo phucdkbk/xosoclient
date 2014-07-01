@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +23,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LotteryResultActivity extends Activity {
@@ -62,18 +64,27 @@ public class LotteryResultActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		Bundle extras = getIntent().getExtras();
+		try {
+			int id = extras.getInt("notificationId");
+			if (id > 0) {
+				NotificationManager myNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+				// remove the notification with the specific id
+				myNotificationManager.cancel(id);
+			}
+		} catch (Exception ex) {
+
+		}
+
 		setContentView(R.layout.activity_screen_slide);
 		lotteryDataSource = new LotteryDataSource(this);
 		lotteryDataSource.open();
 
 		testAlamManager(this);
 
-		// test download result
-		// textView = (TextView) findViewById(R.id.myText);
-		// new
-
 		// Instantiate a ViewPager and a PagerAdapter.
-		// mPager = (ViewPager) findViewById(R.id.pager);
+		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager());
 		mPager.setAdapter(mPagerAdapter);
 		mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -103,13 +114,14 @@ public class LotteryResultActivity extends Activity {
 		// Add either a "next" or "finish" button to the action bar, depending
 		// on which page
 		// is currently selected.
-		MenuItem item = menu.add(Menu.NONE, R.id.action_next, Menu.NONE, (mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish : R.string.action_next);
+		MenuItem item = menu.add(Menu.NONE, R.id.action_next, Menu.NONE, (mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish
+				: R.string.action_next);
 		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		return true;
 	}
 
 	public static LotteryDBResult getLotteryDBResultByDate(int date) {
-		return lotteryDataSource.getAllLotteryResultByDate(date);
+		return lotteryDataSource.getLotteryResultByDate(date);
 	}
 
 	public static void createLotteryDBResult(int date, String result) {
