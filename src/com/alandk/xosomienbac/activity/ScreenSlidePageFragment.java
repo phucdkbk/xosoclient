@@ -96,34 +96,26 @@ public class ScreenSlidePageFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout containing a title and body text.
-		ViewGroup rootView = (ViewGroup) inflater.inflate(
-				R.layout.fragment_screen_slide_page, container, false);
+		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page, container, false);
 		initDiplayResult(rootView);
 
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, 2009);
-		cal.add(Calendar.DATE, mPageNumber - LotteryResultActivity.NUM_PAGES
-				/ 2);
+		cal.add(Calendar.DATE, mPageNumber - LotteryResultActivity.NUM_PAGES / 2);
 		DateFormat df = new SimpleDateFormat("yyyyMMdd");
 		int dateInt = Integer.valueOf(df.format(cal.getTime()));
 
-		LotteryDBResult lotteryDBResult = LotteryResultActivity
-				.getLotteryDBResultByDate(dateInt);
+		LotteryDBResult lotteryDBResult = LotteryResultActivity.getLotteryDBResultByDate(dateInt);
 		if (lotteryDBResult != null) {
-			Result lotteryResult = convertFromJsonToResultObject(lotteryDBResult
-					.getResult());
+			Result lotteryResult = convertFromJsonToResultObject(lotteryDBResult.getResult());
 			convertToDisplayResult(lotteryResult);
 		} else {
-			ConnectivityManager connMgr = (ConnectivityManager) mContext
-					.getSystemService(Context.CONNECTIVITY_SERVICE);
+			ConnectivityManager connMgr = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 			if (networkInfo != null && networkInfo.isConnected()) {
-				new DownloadWebpageTask(dateInt)
-						.execute("http://floating-ravine-3291.herokuapp.com/LotteryResult?date="
-								+ dateInt);
+				new DownloadWebpageTask(dateInt).execute("http://floating-ravine-3291.herokuapp.com/LotteryResult?date=" + dateInt);
 			} else {
 				// display error
 			}
@@ -161,43 +153,25 @@ public class ScreenSlidePageFragment extends Fragment {
 	 */
 	private void initDiplayResult(ViewGroup rootView) {
 		displayResult = new DisplayResult();
-		displayResult.setGiaiDB((TextView) rootView
-				.findViewById(R.id.giaiDBValue));
-		displayResult.setGiaiNhat((TextView) rootView
-				.findViewById(R.id.giaiNhatValue));
-		displayResult.setGiaiNhi((TextView) rootView
-				.findViewById(R.id.giaiNhiValue));
-		displayResult.setGiaiBa((TextView) rootView
-				.findViewById(R.id.giaiBaValue));
-		displayResult.setGiaiTu((TextView) rootView
-				.findViewById(R.id.giaiTuValue));
-		displayResult.setGiaiNam((TextView) rootView
-				.findViewById(R.id.giaiNamValue));
-		displayResult.setGiaiSau((TextView) rootView
-				.findViewById(R.id.giaiSauValue));
-		displayResult.setGiaiBay((TextView) rootView
-				.findViewById(R.id.giaiBayValue));
-		
-		displayResult.setDau0((TextView) rootView
-				.findViewById(R.id.dau0));
-		displayResult.setDau1((TextView) rootView
-				.findViewById(R.id.dau1));
-		displayResult.setDau2((TextView) rootView
-				.findViewById(R.id.dau2));
-		displayResult.setDau3((TextView) rootView
-				.findViewById(R.id.dau3));
-		displayResult.setDau4((TextView) rootView
-				.findViewById(R.id.dau4));
-		displayResult.setDau5((TextView) rootView
-				.findViewById(R.id.dau5));
-		displayResult.setDau6((TextView) rootView
-				.findViewById(R.id.dau6));
-		displayResult.setDau7((TextView) rootView
-				.findViewById(R.id.dau7));
-		displayResult.setDau8((TextView) rootView
-				.findViewById(R.id.dau8));
-		displayResult.setDau9((TextView) rootView
-				.findViewById(R.id.dau9));
+		displayResult.setGiaiDB((TextView) rootView.findViewById(R.id.giaiDBValue));
+		displayResult.setGiaiNhat((TextView) rootView.findViewById(R.id.giaiNhatValue));
+		displayResult.setGiaiNhi((TextView) rootView.findViewById(R.id.giaiNhiValue));
+		displayResult.setGiaiBa((TextView) rootView.findViewById(R.id.giaiBaValue));
+		displayResult.setGiaiTu((TextView) rootView.findViewById(R.id.giaiTuValue));
+		displayResult.setGiaiNam((TextView) rootView.findViewById(R.id.giaiNamValue));
+		displayResult.setGiaiSau((TextView) rootView.findViewById(R.id.giaiSauValue));
+		displayResult.setGiaiBay((TextView) rootView.findViewById(R.id.giaiBayValue));
+
+		displayResult.setDau0((TextView) rootView.findViewById(R.id.dau0));
+		displayResult.setDau1((TextView) rootView.findViewById(R.id.dau1));
+		displayResult.setDau2((TextView) rootView.findViewById(R.id.dau2));
+		displayResult.setDau3((TextView) rootView.findViewById(R.id.dau3));
+		displayResult.setDau4((TextView) rootView.findViewById(R.id.dau4));
+		displayResult.setDau5((TextView) rootView.findViewById(R.id.dau5));
+		displayResult.setDau6((TextView) rootView.findViewById(R.id.dau6));
+		displayResult.setDau7((TextView) rootView.findViewById(R.id.dau7));
+		displayResult.setDau8((TextView) rootView.findViewById(R.id.dau8));
+		displayResult.setDau9((TextView) rootView.findViewById(R.id.dau9));
 	}
 
 	/**
@@ -214,7 +188,7 @@ public class ScreenSlidePageFragment extends Fragment {
 	 * @return
 	 * @throws IOException
 	 */
-	private String downloadUrl(String myurl) throws IOException {
+	public static String downloadUrl(String myurl) throws IOException {
 		InputStream is = null;
 		// Only display the first 500 characters of the retrieved
 		// web page content.
@@ -249,8 +223,7 @@ public class ScreenSlidePageFragment extends Fragment {
 		}
 	}
 
-	public String readIt(InputStream stream, int len) throws IOException,
-			UnsupportedEncodingException {
+	public static String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
 		Reader reader = null;
 		reader = new InputStreamReader(stream, "UTF-8");
 		char[] buffer = new char[len];
@@ -285,8 +258,7 @@ public class ScreenSlidePageFragment extends Fragment {
 					Result lotteryResult = convertFromJsonToResultObject(result);
 					Gson gson = new Gson();
 					if (lotteryResult.isHasFullValue()) {
-						LotteryResultActivity.createLotteryDBResult(date,
-								gson.toJson(lotteryResult));
+						LotteryResultActivity.createLotteryDBResult(date, gson.toJson(lotteryResult));
 					}
 					convertToDisplayResult(lotteryResult);
 				}
@@ -304,7 +276,7 @@ public class ScreenSlidePageFragment extends Fragment {
 	 * @param result
 	 * @return
 	 */
-	private Result convertFromJsonToResultObject(String result) {
+	public static Result convertFromJsonToResultObject(String result) {
 		Gson gson = new Gson();
 		JsonReader reader = new JsonReader(new StringReader(result));
 		reader.setLenient(true);
@@ -326,8 +298,8 @@ public class ScreenSlidePageFragment extends Fragment {
 		displayResult.getGiaiNam().setText(lotteryResult.getGiaiNam());
 		displayResult.getGiaiSau().setText(lotteryResult.getGiaiSau());
 		displayResult.getGiaiBay().setText(lotteryResult.getGiaiBay());
-		
-		lotteryResult.caculateDauso();		
+
+		lotteryResult.caculateDauso();
 		displayResult.getDau0().setText(lotteryResult.getDau0());
 		displayResult.getDau1().setText(lotteryResult.getDau1());
 		displayResult.getDau2().setText(lotteryResult.getDau2());
@@ -337,6 +309,6 @@ public class ScreenSlidePageFragment extends Fragment {
 		displayResult.getDau6().setText(lotteryResult.getDau6());
 		displayResult.getDau7().setText(lotteryResult.getDau7());
 		displayResult.getDau8().setText(lotteryResult.getDau8());
-		displayResult.getDau9().setText(lotteryResult.getDau9());		
+		displayResult.getDau9().setText(lotteryResult.getDau9());
 	}
 }

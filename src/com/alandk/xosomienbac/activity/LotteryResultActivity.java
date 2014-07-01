@@ -47,18 +47,15 @@ public class LotteryResultActivity extends Activity {
 	 * The pager adapter, which provides the pages to the view pager widget.
 	 */
 	private PagerAdapter mPagerAdapter;
-	
-	private void testAlamManager(Context context){
+
+	private void testAlamManager(Context context) {
 		Intent alarmIntent = new Intent(context, AlarmReceiver.class);
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-				alarmIntent, 0);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
 
-		AlarmManager manager = (AlarmManager) context
-				.getSystemService(Context.ALARM_SERVICE);
-		int interval = 2000; // 10 seconds
+		AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+		int interval = 10000; // 10 seconds
 
-		manager.setRepeating(AlarmManager.RTC_WAKEUP,
-				System.currentTimeMillis(), interval, pendingIntent);
+		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
 		Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
 	}
 
@@ -69,15 +66,14 @@ public class LotteryResultActivity extends Activity {
 		lotteryDataSource = new LotteryDataSource(this);
 		lotteryDataSource.open();
 
-		
-		testAlamManager(this);		
-		
+		testAlamManager(this);
+
 		// test download result
 		// textView = (TextView) findViewById(R.id.myText);
 		// new
 
 		// Instantiate a ViewPager and a PagerAdapter.
-		mPager = (ViewPager) findViewById(R.id.pager);
+		// mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager());
 		mPager.setAdapter(mPagerAdapter);
 		mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -94,7 +90,7 @@ public class LotteryResultActivity extends Activity {
 				invalidateOptionsMenu();
 			}
 		});
-		mPager.setCurrentItem(NUM_PAGES/2, true);
+		mPager.setCurrentItem(NUM_PAGES / 2, true);
 	}
 
 	@Override
@@ -102,20 +98,13 @@ public class LotteryResultActivity extends Activity {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.activity_screen_slide, menu);
 
-		menu.findItem(R.id.action_previous).setEnabled(
-				mPager.getCurrentItem() > 0);
+		menu.findItem(R.id.action_previous).setEnabled(mPager.getCurrentItem() > 0);
 
 		// Add either a "next" or "finish" button to the action bar, depending
 		// on which page
 		// is currently selected.
-		MenuItem item = menu
-				.add(Menu.NONE,
-						R.id.action_next,
-						Menu.NONE,
-						(mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish
-								: R.string.action_next);
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM
-				| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+		MenuItem item = menu.add(Menu.NONE, R.id.action_next, Menu.NONE, (mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish : R.string.action_next);
+		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		return true;
 	}
 
@@ -128,8 +117,7 @@ public class LotteryResultActivity extends Activity {
 	}
 
 	public boolean isConnectInternet() {
-		ConnectivityManager connMgr = (ConnectivityManager) 
-				getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 		return (networkInfo != null && networkInfo.isConnected());
 
