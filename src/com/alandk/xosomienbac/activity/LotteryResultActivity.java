@@ -55,7 +55,7 @@ public class LotteryResultActivity extends Activity {
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
 
 		AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-		int interval = 10000; // 10 seconds
+		int interval = 30000; // 10 seconds
 
 		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
 		Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
