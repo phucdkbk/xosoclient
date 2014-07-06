@@ -27,25 +27,27 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-
-import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alandk.xosomienbac.common.DisplayResult;
 import com.alandk.xosomienbac.common.Result;
 import com.alandk.xosomienbac.database.LotteryDBResult;
 import com.example.xosomienbac.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
@@ -59,6 +61,9 @@ import com.google.gson.stream.JsonReader;
  * </p>
  */
 public class ScreenSlidePageFragment extends Fragment {
+
+	
+
 	private static Context mContext;
 	/**
 	 * The argument key for the page number this fragment represents.
@@ -96,26 +101,39 @@ public class ScreenSlidePageFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+
 		// Inflate the layout containing a title and body text.
-		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page, container, false);
+		ViewGroup rootView = (ViewGroup) inflater.inflate(
+				R.layout.fragment_screen_slide_page, container, false);
 		initDiplayResult(rootView);
 
+		
+
+		
+
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.YEAR, 2009);
-		cal.add(Calendar.DATE, mPageNumber - LotteryResultActivity.NUM_PAGES / 2);
+		// cal.set(Calendar.YEAR, 2009);
+		cal.add(Calendar.DATE, mPageNumber - LotteryResultActivity.NUM_PAGES
+				/ 2);
 		DateFormat df = new SimpleDateFormat("yyyyMMdd");
 		int dateInt = Integer.valueOf(df.format(cal.getTime()));
 
-		LotteryDBResult lotteryDBResult = LotteryResultActivity.getLotteryDBResultByDate(dateInt);
+		LotteryDBResult lotteryDBResult = LotteryResultActivity
+				.getLotteryDBResultByDate(dateInt);
 		if (lotteryDBResult != null) {
-			Result lotteryResult = convertFromJsonToResultObject(lotteryDBResult.getResult());
+			Result lotteryResult = convertFromJsonToResultObject(lotteryDBResult
+					.getResult());
 			convertToDisplayResult(lotteryResult);
 		} else {
-			ConnectivityManager connMgr = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+			ConnectivityManager connMgr = (ConnectivityManager) mContext
+					.getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 			if (networkInfo != null && networkInfo.isConnected()) {
-				new DownloadWebpageTask(dateInt).execute("http://floating-ravine-3291.herokuapp.com/LotteryResult?date=" + dateInt);
+				new DownloadWebpageTask(dateInt)
+						.execute("http://floating-ravine-3291.herokuapp.com/LotteryResult?date="
+								+ dateInt);
 			} else {
 				// display error
 			}
@@ -153,14 +171,22 @@ public class ScreenSlidePageFragment extends Fragment {
 	 */
 	private void initDiplayResult(ViewGroup rootView) {
 		displayResult = new DisplayResult();
-		displayResult.setGiaiDB((TextView) rootView.findViewById(R.id.giaiDBValue));
-		displayResult.setGiaiNhat((TextView) rootView.findViewById(R.id.giaiNhatValue));
-		displayResult.setGiaiNhi((TextView) rootView.findViewById(R.id.giaiNhiValue));
-		displayResult.setGiaiBa((TextView) rootView.findViewById(R.id.giaiBaValue));
-		displayResult.setGiaiTu((TextView) rootView.findViewById(R.id.giaiTuValue));
-		displayResult.setGiaiNam((TextView) rootView.findViewById(R.id.giaiNamValue));
-		displayResult.setGiaiSau((TextView) rootView.findViewById(R.id.giaiSauValue));
-		displayResult.setGiaiBay((TextView) rootView.findViewById(R.id.giaiBayValue));
+		displayResult.setGiaiDB((TextView) rootView
+				.findViewById(R.id.giaiDBValue));
+		displayResult.setGiaiNhat((TextView) rootView
+				.findViewById(R.id.giaiNhatValue));
+		displayResult.setGiaiNhi((TextView) rootView
+				.findViewById(R.id.giaiNhiValue));
+		displayResult.setGiaiBa((TextView) rootView
+				.findViewById(R.id.giaiBaValue));
+		displayResult.setGiaiTu((TextView) rootView
+				.findViewById(R.id.giaiTuValue));
+		displayResult.setGiaiNam((TextView) rootView
+				.findViewById(R.id.giaiNamValue));
+		displayResult.setGiaiSau((TextView) rootView
+				.findViewById(R.id.giaiSauValue));
+		displayResult.setGiaiBay((TextView) rootView
+				.findViewById(R.id.giaiBayValue));
 
 		displayResult.setDau0((TextView) rootView.findViewById(R.id.dau0));
 		displayResult.setDau1((TextView) rootView.findViewById(R.id.dau1));
@@ -188,7 +214,7 @@ public class ScreenSlidePageFragment extends Fragment {
 	 * @return
 	 * @throws IOException
 	 */
-	public static String downloadUrl(String myurl) throws IOException {
+	public static String downloadUrl(String myurl) throws Exception {
 		InputStream is = null;
 		// Only display the first 500 characters of the retrieved
 		// web page content.
@@ -223,7 +249,8 @@ public class ScreenSlidePageFragment extends Fragment {
 		}
 	}
 
-	public static String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
+	public static String readIt(InputStream stream, int len)
+			throws IOException, UnsupportedEncodingException {
 		Reader reader = null;
 		reader = new InputStreamReader(stream, "UTF-8");
 		char[] buffer = new char[len];
@@ -244,7 +271,7 @@ public class ScreenSlidePageFragment extends Fragment {
 			// params comes from the execute() call: params[0] is the url.
 			try {
 				return downloadUrl(urls[0]);
-			} catch (IOException e) {
+			} catch (Exception e) {
 				return "Unable to retrieve web page. URL may be invalid.";
 			}
 		}
@@ -258,13 +285,14 @@ public class ScreenSlidePageFragment extends Fragment {
 					Result lotteryResult = convertFromJsonToResultObject(result);
 					Gson gson = new Gson();
 					if (lotteryResult.isHasFullValue()) {
-						LotteryResultActivity.createLotteryDBResult(date, gson.toJson(lotteryResult));
+						LotteryResultActivity.createLotteryDBResult(date,
+								gson.toJson(lotteryResult));
 					}
 					convertToDisplayResult(lotteryResult);
 				}
 			} catch (Exception e) {
 				Log.e("E", e.getMessage());
-				throw e;
+				// throw e;
 			}
 
 		}

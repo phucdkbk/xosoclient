@@ -6,6 +6,9 @@ import com.alandk.xosomienbac.database.LotteryDataSource;
 import com.alandk.xosomienbac.sync.AlarmReceiver;
 //import com.alandk.xosomienbac.ScreenSlideActivity.ScreenSlidePagerAdapter;
 import com.example.xosomienbac.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -23,12 +26,18 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class LotteryResultActivity extends Activity {
 
 	private static LotteryDataSource lotteryDataSource;
+
+	/** The view to show the ad. */
+	private AdView adView;
+
+	/* Your ad unit id. Replace with your actual ad unit id. */
+	private static final String AD_UNIT_ID = "ca-app-pub-1954954439370083/7603841453";
 
 	public LotteryResultActivity() {
 		// TODO Auto-generated constructor stub
@@ -52,12 +61,15 @@ public class LotteryResultActivity extends Activity {
 
 	private void testAlamManager(Context context) {
 		Intent alarmIntent = new Intent(context, AlarmReceiver.class);
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+				alarmIntent, 0);
 
-		AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-		int interval = 30000; // 10 seconds
+		AlarmManager manager = (AlarmManager) context
+				.getSystemService(Context.ALARM_SERVICE);
+		int interval = 10000; // 10 seconds
 
-		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
+		manager.setRepeating(AlarmManager.RTC_WAKEUP,
+				System.currentTimeMillis(), interval, pendingIntent);
 		Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
 	}
 
@@ -78,6 +90,26 @@ public class LotteryResultActivity extends Activity {
 		}
 
 		setContentView(R.layout.activity_screen_slide);
+		// Create an ad.
+		adView = new AdView(this);
+		adView.setAdSize(AdSize.SMART_BANNER);
+		adView.setAdUnitId(AD_UNIT_ID);
+
+		LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
+		layout.addView(adView, 0);
+
+//		AdRequest adRequest = new AdRequest.Builder()
+//				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+//				.addTestDevice("Hello").build();
+				
+		
+		AdRequest adRequest = new AdRequest.Builder()
+	    .setGender(AdRequest.GENDER_MALE)	    	    
+	    .build();
+
+		// Start loading the ad in the background.
+		adView.loadAd(adRequest);
+
 		lotteryDataSource = new LotteryDataSource(this);
 		lotteryDataSource.open();
 
@@ -109,14 +141,20 @@ public class LotteryResultActivity extends Activity {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.activity_screen_slide, menu);
 
-		menu.findItem(R.id.action_previous).setEnabled(mPager.getCurrentItem() > 0);
+		menu.findItem(R.id.action_previous).setEnabled(
+				mPager.getCurrentItem() > 0);
 
 		// Add either a "next" or "finish" button to the action bar, depending
 		// on which page
 		// is currently selected.
-		MenuItem item = menu.add(Menu.NONE, R.id.action_next, Menu.NONE, (mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish
-				: R.string.action_next);
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+		MenuItem item = menu
+				.add(Menu.NONE,
+						R.id.action_next,
+						Menu.NONE,
+						(mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish
+								: R.string.action_next);
+		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM
+				| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		return true;
 	}
 
@@ -168,7 +206,8 @@ public class LotteryResultActivity extends Activity {
 
 		@Override
 		public Fragment getItem(int position) {
-			return ScreenSlidePageFragment.create(position, getApplicationContext());
+			return ScreenSlidePageFragment.create(position,
+					getApplicationContext());
 		}
 
 		@Override

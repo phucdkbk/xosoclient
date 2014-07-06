@@ -132,7 +132,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 			// params comes from the execute() call: params[0] is the url.
 			try {
 				return ScreenSlidePageFragment.downloadUrl(urls[0]);
-			} catch (IOException e) {
+			} catch (Exception e) {
 				return "Unable to retrieve web page. URL may be invalid.";
 			}
 		}
@@ -153,7 +153,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 				}
 			} catch (Exception e) {
 				Log.e("E", e.getMessage(), e);
-				throw e;
+				//throw e;
 			}
 
 		}

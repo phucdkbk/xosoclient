@@ -39,16 +39,16 @@ public class Result {
 
 	public Result() {
 		super();
-		listDau0 = new ArrayList<>();
-		listDau1 = new ArrayList<>();
-		listDau2 = new ArrayList<>();
-		listDau3 = new ArrayList<>();
-		listDau4 = new ArrayList<>();
-		listDau5 = new ArrayList<>();
-		listDau6 = new ArrayList<>();
-		listDau7 = new ArrayList<>();
-		listDau8 = new ArrayList<>();
-		listDau9 = new ArrayList<>();
+		listDau0 = new ArrayList<Integer>();
+		listDau1 = new ArrayList<Integer>();
+		listDau2 = new ArrayList<Integer>();
+		listDau3 = new ArrayList<Integer>();
+		listDau4 = new ArrayList<Integer>();
+		listDau5 = new ArrayList<Integer>();
+		listDau6 = new ArrayList<Integer>();
+		listDau7 = new ArrayList<Integer>();
+		listDau8 = new ArrayList<Integer>();
+		listDau9 = new ArrayList<Integer>();
 	}
 
 	public void caculateDauso() {
@@ -153,6 +153,8 @@ public class Result {
 	}
 
 	private void addToListDauso(String ketqua) {
+		if(ketqua==null) return;
+		if(ketqua.length()<2) return;
 		// TODO Auto-generated method stub
 		ketqua = ketqua.trim();
 		int haisocuoi = Integer.valueOf(ketqua.substring(ketqua.length() - 2,

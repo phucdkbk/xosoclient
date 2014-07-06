@@ -13,7 +13,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/xsmb"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <receiver android:name="com.alandk.xosomienbac.sync.AlarmReceiver" >
@@ -38,14 +38,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name="com.alandk.xosomienbac.sync.NotificationOne"
-             android:label="Details of Notification One"
-             android:parentActivityName="com.alandk.xosomienbac.activity.LotteryResultActivity">
-        	<meta-data
-        		android:name="android.support.PARENT_ACTIVITY"
-        		android:value="com.alandk.xosomienbac.activity.LotteryResultActivity"/>
+        <activity
+            android:name="com.alandk.xosomienbac.sync.NotificationOne"
+            android:label="Details of Notification One"
+            android:parentActivityName="com.alandk.xosomienbac.activity.LotteryResultActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alandk.xosomienbac.activity.LotteryResultActivity" />
         </activity>
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <!-- <activity -->
         <!-- android:name="com.alandk.xosomienbac.database.TestDatabaseActivity" -->
