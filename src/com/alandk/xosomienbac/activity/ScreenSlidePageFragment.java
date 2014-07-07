@@ -27,27 +27,24 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
+
 import android.app.Fragment;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alandk.xosomienbac.common.DisplayResult;
 import com.alandk.xosomienbac.common.Result;
 import com.alandk.xosomienbac.database.LotteryDBResult;
 import com.example.xosomienbac.R;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
@@ -61,8 +58,6 @@ import com.google.gson.stream.JsonReader;
  * </p>
  */
 public class ScreenSlidePageFragment extends Fragment {
-
-	
 
 	private static Context mContext;
 	/**
@@ -109,15 +104,11 @@ public class ScreenSlidePageFragment extends Fragment {
 				R.layout.fragment_screen_slide_page, container, false);
 		initDiplayResult(rootView);
 
-		
-
-		
-
 		Calendar cal = Calendar.getInstance();
 		// cal.set(Calendar.YEAR, 2009);
 		cal.add(Calendar.DATE, mPageNumber - LotteryResultActivity.NUM_PAGES
 				/ 2);
-		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		DateFormat df = new SimpleDateFormat("yyyyMMdd", Locale.US);
 		int dateInt = Integer.valueOf(df.format(cal.getTime()));
 
 		LotteryDBResult lotteryDBResult = LotteryResultActivity

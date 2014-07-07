@@ -653,11 +653,13 @@ containing a value of this type.
 
 
 
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
 
 
 
@@ -680,7 +682,9 @@ containing a value of this type.
          */
         public static final int AppTheme=0x7f040006;
         public static final int Dauso=0x7f04000b;
+        public static final int DausoLabel=0x7f04000d;
         public static final int Duoiso=0x7f04000a;
+        public static final int DuoisoLabel=0x7f04000c;
         public static final int GiaiBinhthuong=0x7f040008;
         public static final int GiaiDB=0x7f040007;
         public static final int KetquaGiai=0x7f040009;

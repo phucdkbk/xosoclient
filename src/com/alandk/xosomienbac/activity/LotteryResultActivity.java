@@ -98,14 +98,14 @@ public class LotteryResultActivity extends Activity {
 		LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
 		layout.addView(adView, 0);
 
-//		AdRequest adRequest = new AdRequest.Builder()
-//				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-//				.addTestDevice("Hello").build();
-				
-		
+		// AdRequest adRequest = new AdRequest.Builder()
+		// .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+		// .addTestDevice("Hello").build();
+
 		AdRequest adRequest = new AdRequest.Builder()
-	    .setGender(AdRequest.GENDER_MALE)	    	    
-	    .build();
+				.setGender(AdRequest.GENDER_MALE)
+				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+				.addTestDevice("EF46L01111101079272").build();
 
 		// Start loading the ad in the background.
 		adView.loadAd(adRequest);

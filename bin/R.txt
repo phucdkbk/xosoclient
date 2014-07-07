@@ -247,7 +247,9 @@ int string wallet_buy_button_place_holder 0x7f05001f
 int style AppBaseTheme 0x7f040005
 int style AppTheme 0x7f040006
 int style Dauso 0x7f04000b
+int style DausoLabel 0x7f04000d
 int style Duoiso 0x7f04000a
+int style DuoisoLabel 0x7f04000c
 int style GiaiBinhthuong 0x7f040008
 int style GiaiDB 0x7f040007
 int style KetquaGiai 0x7f040009
