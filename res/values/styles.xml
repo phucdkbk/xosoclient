@@ -15,7 +15,12 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+<!--         <item name="android:background">#F50A0A</item> -->
     </style>
+    
+<!--     <style name="WindowTitleBackground">      -->
+<!--         <item name="android:background">@color/titlebackgroundcolor</item>                    -->
+<!--     </style> -->
 
     <style name="GiaiDB">
         <item name="android:textColor">#F50A0A</item>
@@ -33,6 +38,14 @@
         <item name="android:textSize">17sp</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="KetquaGiaiDB">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    
 
     <style name="Duoiso">
         <item name="android:layout_height">wrap_content</item>

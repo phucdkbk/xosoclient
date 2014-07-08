@@ -34,13 +34,28 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="0dip" >
-
             <TextView
                 android:id="@+id/currentDate"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                android:textSize="25sp" />
+                android:gravity="center"
+                android:textSize="22sp" />
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/rowDateResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="0dip" >
+            <TextView
+                android:id="@+id/showResultTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:gravity="center"
+                android:textSize="16sp" />
         </TableRow>
 
         <TableRow
@@ -60,7 +75,7 @@
 
             <TextView
                 android:id="@+id/giaiDBValue"
-                style="@style/KetquaGiai"
+                style="@style/KetquaGiaiDB"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="2" />
@@ -238,6 +253,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/statisticResult"
+                android:gravity="center"
                 android:textSize="17sp" />
         </TableRow>
 

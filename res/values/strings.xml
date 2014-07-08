@@ -64,7 +64,18 @@
     <string name="dau8">8</string>
     <string name="dau9">9</string>
     
-    <string name="newResult">Giải mới</string>
+    
+    <string name="thu2">thứ hai</string>
+    <string name="thu3">thứ ba</string>
+    <string name="thu4">thứ tư</string>
+    <string name="thu5">thứ năm</string>
+    <string name="thu6">thứ sáu</string>
+    <string name="thu7">thứ bảy</string>
+    <string name="chunhat">chủ nhật</string>
+    
+    
+    <string name="newResult">Kết quả ngày</string>
+    <string name="resultTitle">Mở thưởng</string>
 
     <!-- Other strings -->
 

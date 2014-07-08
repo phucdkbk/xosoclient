@@ -26,6 +26,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -61,16 +62,13 @@ public class LotteryResultActivity extends Activity {
 
 	private void testAlamManager(Context context) {
 		Intent alarmIntent = new Intent(context, AlarmReceiver.class);
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-				alarmIntent, 0);
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
 
-		AlarmManager manager = (AlarmManager) context
-				.getSystemService(Context.ALARM_SERVICE);
+		AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		int interval = 10000; // 10 seconds
 
-		manager.setRepeating(AlarmManager.RTC_WAKEUP,
-				System.currentTimeMillis(), interval, pendingIntent);
-		Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
+		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
+		// Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -90,6 +88,7 @@ public class LotteryResultActivity extends Activity {
 		}
 
 		setContentView(R.layout.activity_screen_slide);
+		//getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_screen_slide);
 		// Create an ad.
 		adView = new AdView(this);
 		adView.setAdSize(AdSize.SMART_BANNER);
@@ -102,9 +101,7 @@ public class LotteryResultActivity extends Activity {
 		// .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
 		// .addTestDevice("Hello").build();
 
-		AdRequest adRequest = new AdRequest.Builder()
-				.setGender(AdRequest.GENDER_MALE)
-				.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+		AdRequest adRequest = new AdRequest.Builder().setGender(AdRequest.GENDER_MALE).addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
 				.addTestDevice("EF46L01111101079272").build();
 
 		// Start loading the ad in the background.
@@ -141,20 +138,14 @@ public class LotteryResultActivity extends Activity {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.activity_screen_slide, menu);
 
-		menu.findItem(R.id.action_previous).setEnabled(
-				mPager.getCurrentItem() > 0);
+		menu.findItem(R.id.action_previous).setEnabled(mPager.getCurrentItem() > 0);
 
 		// Add either a "next" or "finish" button to the action bar, depending
 		// on which page
 		// is currently selected.
-		MenuItem item = menu
-				.add(Menu.NONE,
-						R.id.action_next,
-						Menu.NONE,
-						(mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish
-								: R.string.action_next);
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM
-				| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+		MenuItem item = menu.add(Menu.NONE, R.id.action_next, Menu.NONE, (mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish
+				: R.string.action_next);
+		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		return true;
 	}
 
@@ -206,8 +197,7 @@ public class LotteryResultActivity extends Activity {
 
 		@Override
 		public Fragment getItem(int position) {
-			return ScreenSlidePageFragment.create(position,
-					getApplicationContext());
+			return ScreenSlidePageFragment.create(position, getApplicationContext());
 		}
 
 		@Override

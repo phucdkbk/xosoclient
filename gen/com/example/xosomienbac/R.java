@@ -363,40 +363,41 @@ containing a value of this type.
         public static final int wallet_secondary_text_holo_dark=0x7f06001a;
     }
     public static final class drawable {
-        public static final int border=0x7f020000;
-        public static final int cell_shape=0x7f020001;
-        public static final int common_signin_btn_icon_dark=0x7f020002;
-        public static final int common_signin_btn_icon_disabled_dark=0x7f020003;
-        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020004;
-        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020005;
-        public static final int common_signin_btn_icon_disabled_light=0x7f020006;
-        public static final int common_signin_btn_icon_focus_dark=0x7f020007;
-        public static final int common_signin_btn_icon_focus_light=0x7f020008;
-        public static final int common_signin_btn_icon_light=0x7f020009;
-        public static final int common_signin_btn_icon_normal_dark=0x7f02000a;
-        public static final int common_signin_btn_icon_normal_light=0x7f02000b;
-        public static final int common_signin_btn_icon_pressed_dark=0x7f02000c;
-        public static final int common_signin_btn_icon_pressed_light=0x7f02000d;
-        public static final int common_signin_btn_text_dark=0x7f02000e;
-        public static final int common_signin_btn_text_disabled_dark=0x7f02000f;
-        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020010;
-        public static final int common_signin_btn_text_disabled_focus_light=0x7f020011;
-        public static final int common_signin_btn_text_disabled_light=0x7f020012;
-        public static final int common_signin_btn_text_focus_dark=0x7f020013;
-        public static final int common_signin_btn_text_focus_light=0x7f020014;
-        public static final int common_signin_btn_text_light=0x7f020015;
-        public static final int common_signin_btn_text_normal_dark=0x7f020016;
-        public static final int common_signin_btn_text_normal_light=0x7f020017;
-        public static final int common_signin_btn_text_pressed_dark=0x7f020018;
-        public static final int common_signin_btn_text_pressed_light=0x7f020019;
-        public static final int ic_launcher=0x7f02001a;
-        public static final int ic_plusone_medium_off_client=0x7f02001b;
-        public static final int ic_plusone_small_off_client=0x7f02001c;
-        public static final int ic_plusone_standard_off_client=0x7f02001d;
-        public static final int ic_plusone_tall_off_client=0x7f02001e;
-        public static final int powered_by_google_dark=0x7f02001f;
-        public static final int powered_by_google_light=0x7f020020;
-        public static final int xsmb=0x7f020021;
+        public static final int actionbar_background=0x7f020000;
+        public static final int border=0x7f020001;
+        public static final int cell_shape=0x7f020002;
+        public static final int common_signin_btn_icon_dark=0x7f020003;
+        public static final int common_signin_btn_icon_disabled_dark=0x7f020004;
+        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020005;
+        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020006;
+        public static final int common_signin_btn_icon_disabled_light=0x7f020007;
+        public static final int common_signin_btn_icon_focus_dark=0x7f020008;
+        public static final int common_signin_btn_icon_focus_light=0x7f020009;
+        public static final int common_signin_btn_icon_light=0x7f02000a;
+        public static final int common_signin_btn_icon_normal_dark=0x7f02000b;
+        public static final int common_signin_btn_icon_normal_light=0x7f02000c;
+        public static final int common_signin_btn_icon_pressed_dark=0x7f02000d;
+        public static final int common_signin_btn_icon_pressed_light=0x7f02000e;
+        public static final int common_signin_btn_text_dark=0x7f02000f;
+        public static final int common_signin_btn_text_disabled_dark=0x7f020010;
+        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020011;
+        public static final int common_signin_btn_text_disabled_focus_light=0x7f020012;
+        public static final int common_signin_btn_text_disabled_light=0x7f020013;
+        public static final int common_signin_btn_text_focus_dark=0x7f020014;
+        public static final int common_signin_btn_text_focus_light=0x7f020015;
+        public static final int common_signin_btn_text_light=0x7f020016;
+        public static final int common_signin_btn_text_normal_dark=0x7f020017;
+        public static final int common_signin_btn_text_normal_light=0x7f020018;
+        public static final int common_signin_btn_text_pressed_dark=0x7f020019;
+        public static final int common_signin_btn_text_pressed_light=0x7f02001a;
+        public static final int ic_launcher=0x7f02001b;
+        public static final int ic_plusone_medium_off_client=0x7f02001c;
+        public static final int ic_plusone_small_off_client=0x7f02001d;
+        public static final int ic_plusone_standard_off_client=0x7f02001e;
+        public static final int ic_plusone_tall_off_client=0x7f02001f;
+        public static final int powered_by_google_dark=0x7f020020;
+        public static final int powered_by_google_light=0x7f020021;
+        public static final int xsmb=0x7f020022;
     }
     public static final class id {
         public static final int action_flip=0x7f070015;
@@ -409,8 +410,8 @@ containing a value of this type.
     
          */
         public static final int action_next=0x7f070014;
-        public static final int action_previous=0x7f070044;
-        public static final int add=0x7f070041;
+        public static final int action_previous=0x7f070046;
+        public static final int add=0x7f070043;
         public static final int book_now=0x7f070010;
         public static final int buyButton=0x7f07000a;
         public static final int buy_now=0x7f07000f;
@@ -418,35 +419,35 @@ containing a value of this type.
         public static final int classic=0x7f070011;
         public static final int content=0x7f070019;
         public static final int currentDate=0x7f07001c;
-        public static final int dau0=0x7f070035;
-        public static final int dau1=0x7f070037;
-        public static final int dau2=0x7f070039;
-        public static final int dau3=0x7f07003b;
-        public static final int dau4=0x7f07003d;
-        public static final int dau5=0x7f070036;
-        public static final int dau6=0x7f070038;
-        public static final int dau7=0x7f07003a;
-        public static final int dau8=0x7f07003c;
-        public static final int dau9=0x7f07003e;
-        public static final int delete=0x7f070042;
-        public static final int giaiBaLabel=0x7f070027;
-        public static final int giaiBaValue=0x7f070028;
-        public static final int giaiBayLabel=0x7f070033;
-        public static final int giaiBayValue=0x7f070034;
-        public static final int giaiDBLabel=0x7f07001e;
-        public static final int giaiDBValue=0x7f07001f;
-        public static final int giaiNamLabel=0x7f07002d;
-        public static final int giaiNamValue=0x7f07002e;
-        public static final int giaiNhatLabel=0x7f070021;
-        public static final int giaiNhatValue=0x7f070022;
-        public static final int giaiNhiLabel=0x7f070024;
-        public static final int giaiNhiValue=0x7f070025;
-        public static final int giaiSauLabel=0x7f070030;
-        public static final int giaiSauValue=0x7f070031;
-        public static final int giaiTuLabel=0x7f07002a;
-        public static final int giaiTuValue=0x7f07002b;
+        public static final int dau0=0x7f070037;
+        public static final int dau1=0x7f070039;
+        public static final int dau2=0x7f07003b;
+        public static final int dau3=0x7f07003d;
+        public static final int dau4=0x7f07003f;
+        public static final int dau5=0x7f070038;
+        public static final int dau6=0x7f07003a;
+        public static final int dau7=0x7f07003c;
+        public static final int dau8=0x7f07003e;
+        public static final int dau9=0x7f070040;
+        public static final int delete=0x7f070044;
+        public static final int giaiBaLabel=0x7f070029;
+        public static final int giaiBaValue=0x7f07002a;
+        public static final int giaiBayLabel=0x7f070035;
+        public static final int giaiBayValue=0x7f070036;
+        public static final int giaiDBLabel=0x7f070020;
+        public static final int giaiDBValue=0x7f070021;
+        public static final int giaiNamLabel=0x7f07002f;
+        public static final int giaiNamValue=0x7f070030;
+        public static final int giaiNhatLabel=0x7f070023;
+        public static final int giaiNhatValue=0x7f070024;
+        public static final int giaiNhiLabel=0x7f070026;
+        public static final int giaiNhiValue=0x7f070027;
+        public static final int giaiSauLabel=0x7f070032;
+        public static final int giaiSauValue=0x7f070033;
+        public static final int giaiTuLabel=0x7f07002c;
+        public static final int giaiTuValue=0x7f07002d;
         public static final int grayscale=0x7f070012;
-        public static final int group=0x7f070040;
+        public static final int group=0x7f070042;
         public static final int holo_dark=0x7f070005;
         public static final int holo_light=0x7f070006;
         public static final int hybrid=0x7f070004;
@@ -454,27 +455,29 @@ containing a value of this type.
         public static final int lotteryContent=0x7f070016;
         public static final int match_parent=0x7f07000c;
         public static final int monochrome=0x7f070013;
-        public static final int myText=0x7f070043;
+        public static final int myText=0x7f070045;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
         public static final int pager=0x7f070018;
         public static final int production=0x7f070007;
+        public static final int rowDateResult=0x7f07001d;
         public static final int sandbox=0x7f070008;
         public static final int satellite=0x7f070002;
         public static final int selectionDetails=0x7f07000b;
+        public static final int showResultTitle=0x7f07001e;
         public static final int strict_sandbox=0x7f070009;
         public static final int tableLayout1=0x7f07001a;
         public static final int tableRow1=0x7f07001b;
-        public static final int tableRow2=0x7f07001d;
-        public static final int tableRow3=0x7f070020;
-        public static final int tableRow4=0x7f070023;
-        public static final int tableRow5=0x7f070026;
-        public static final int tableRow6=0x7f070029;
-        public static final int tableRow7=0x7f07002c;
-        public static final int tableRow8=0x7f07002f;
-        public static final int tableRow9=0x7f070032;
+        public static final int tableRow2=0x7f07001f;
+        public static final int tableRow3=0x7f070022;
+        public static final int tableRow4=0x7f070025;
+        public static final int tableRow5=0x7f070028;
+        public static final int tableRow6=0x7f07002b;
+        public static final int tableRow7=0x7f07002e;
+        public static final int tableRow8=0x7f070031;
+        public static final int tableRow9=0x7f070034;
         public static final int terrain=0x7f070003;
-        public static final int text1=0x7f07003f;
+        public static final int text1=0x7f070041;
         public static final int wrap_content=0x7f07000d;
     }
     public static final class integer {
@@ -510,8 +513,9 @@ containing a value of this type.
         public static final int auth_client_play_services_err_notification_msg=0x7f050004;
         public static final int auth_client_requested_by_msg=0x7f050005;
         public static final int auth_client_using_bad_version_title=0x7f050000;
-        public static final int card_back_description=0x7f05004b;
-        public static final int card_back_title=0x7f05004a;
+        public static final int card_back_description=0x7f050053;
+        public static final int card_back_title=0x7f050052;
+        public static final int chunhat=0x7f05004d;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -629,12 +633,19 @@ containing a value of this type.
         public static final int giaiTuLabel=0x7f050036;
         /**  Other strings 
          */
-        public static final int hello=0x7f050048;
+        public static final int hello=0x7f050050;
         public static final int lastNumber=0x7f05003c;
-        public static final int lorem_ipsum=0x7f05004c;
-        public static final int newResult=0x7f050047;
+        public static final int lorem_ipsum=0x7f050054;
+        public static final int newResult=0x7f05004e;
         public static final int resultDate=0x7f05003a;
-        public static final int statisticResult=0x7f050049;
+        public static final int resultTitle=0x7f05004f;
+        public static final int statisticResult=0x7f050051;
+        public static final int thu2=0x7f050047;
+        public static final int thu3=0x7f050048;
+        public static final int thu4=0x7f050049;
+        public static final int thu5=0x7f05004a;
+        public static final int thu6=0x7f05004b;
+        public static final int thu7=0x7f05004c;
         public static final int title_card_flip=0x7f050022;
         public static final int title_crossfade=0x7f050021;
         public static final int title_layout_changes=0x7f050025;
@@ -679,15 +690,27 @@ containing a value of this type.
         public static final int AppBaseTheme=0x7f040005;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
+         <item name="android:background">#F50A0A</item> 
          */
         public static final int AppTheme=0x7f040006;
-        public static final int Dauso=0x7f04000b;
-        public static final int DausoLabel=0x7f04000d;
-        public static final int Duoiso=0x7f04000a;
-        public static final int DuoisoLabel=0x7f04000c;
+        /**  the theme applied to the application or activity 
+         */
+        public static final int CustomActionBarTheme=0x7f04000f;
+        public static final int Dauso=0x7f04000c;
+        public static final int DausoLabel=0x7f04000e;
+        public static final int Duoiso=0x7f04000b;
+        public static final int DuoisoLabel=0x7f04000d;
         public static final int GiaiBinhthuong=0x7f040008;
+        /**      <style name="WindowTitleBackground">      
+         <item name="android:background">@color/titlebackgroundcolor</item>                    
+     </style> 
+         */
         public static final int GiaiDB=0x7f040007;
         public static final int KetquaGiai=0x7f040009;
+        public static final int KetquaGiaiDB=0x7f04000a;
+        /**  ActionBar styles 
+         */
+        public static final int MyActionBar=0x7f040010;
         public static final int Theme_IAPTheme=0x7f040000;
         public static final int WalletFragmentDefaultButtonTextAppearance=0x7f040003;
         public static final int WalletFragmentDefaultDetailsHeaderTextAppearance=0x7f040002;
