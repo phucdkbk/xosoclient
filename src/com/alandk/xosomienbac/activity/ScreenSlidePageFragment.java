@@ -41,7 +41,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alandk.xosomienbac.common.DisplayResult;
 import com.alandk.xosomienbac.common.Result;
@@ -62,6 +65,7 @@ import com.google.gson.stream.JsonReader;
 public class ScreenSlidePageFragment extends Fragment {
 
 	private static Context mContext;
+	private static LotteryResultActivity lrActivity;
 	/**
 	 * The argument key for the page number this fragment represents.
 	 */
@@ -78,12 +82,13 @@ public class ScreenSlidePageFragment extends Fragment {
 	 * Factory method for this fragment class. Constructs a new fragment for the
 	 * given page number.
 	 */
-	public static ScreenSlidePageFragment create(int pageNumber, Context context) {
+	public static ScreenSlidePageFragment create(int pageNumber, Context context, LotteryResultActivity activity) {
 		ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
 		mContext = context;
 		Bundle args = new Bundle();
 		args.putInt(ARG_PAGE, pageNumber);
 		fragment.setArguments(args);
+		lrActivity = activity;
 		return fragment;
 	}
 
@@ -119,9 +124,10 @@ public class ScreenSlidePageFragment extends Fragment {
 		}
 		//
 		// Set the title view to show the page number.
-		String strDate = getDisplayDateFromDateInt(dateInt);
-		TextView textView = (TextView) rootView.findViewById(R.id.currentDate);
-		textView.setText(getDisplayDateFromDateInt(dateInt));
+
+		// View v = inflater.inflate(R.layout.activity_screen_slide, container);
+		// TextView aTextView = (TextView) v.findViewById(R.id.currentDate);
+		String strDate = setDisplayDate(rootView, dateInt);
 
 		Calendar cal = Calendar.getInstance();
 		Date date = null;
@@ -138,6 +144,53 @@ public class ScreenSlidePageFragment extends Fragment {
 		textTitleView.setText(mContext.getResources().getString(R.string.resultTitle) + " " + dayOfWeek + " " + strDate);
 
 		return rootView;
+	}
+
+	private String setDisplayDate(ViewGroup rootView, int dateInt) {
+		String strDate = getDisplayDateFromDateInt(dateInt);
+		TextView currentDate = (TextView) rootView.findViewById(R.id.currentDate);
+		currentDate.setText(getDisplayDateFromDateInt(dateInt));
+
+		Calendar cal = Calendar.getInstance();
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(strDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cal.setTime(date);
+		cal.add(Calendar.DATE, -1);
+
+		String strPreviousDate = new SimpleDateFormat("dd/MM", Locale.ENGLISH).format(cal.getTime());
+		TextView previousDate = (TextView) rootView.findViewById(R.id.previousDate);
+		previousDate.setText(strPreviousDate);
+		previousDate.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				// LotteryResultActivity activity = (LotteryResultActivity)
+				// mContext;
+				// Toast.makeText(mContext, "Button Clicked",
+				// Toast.LENGTH_SHORT).show();
+				lrActivity.gotoPreviousDate();
+			}
+		});
+
+		cal.add(Calendar.DATE, 2);
+		String strNextDate = new SimpleDateFormat("dd/MM", Locale.ENGLISH).format(cal.getTime());
+		TextView nextDate = (TextView) rootView.findViewById(R.id.nextDate);
+		nextDate.setText(strNextDate);
+		nextDate.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				// LotteryResultActivity activity = (LotteryResultActivity)
+				// mContext;
+				// Toast.makeText(mContext, "Button Clicked",
+				// Toast.LENGTH_SHORT).show();
+				lrActivity.gotoNextDate();
+			}
+		});
+		return strDate;
 	}
 
 	private String getDayOfWeekVietnamese(Calendar cal) {

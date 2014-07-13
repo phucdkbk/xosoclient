@@ -10,6 +10,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Fragment;
@@ -24,13 +25,18 @@ import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.app.ActionBar;
 
-public class LotteryResultActivity extends Activity {
+public class LotteryResultActivity extends Activity{
 
 	private static LotteryDataSource lotteryDataSource;
 
@@ -54,6 +60,16 @@ public class LotteryResultActivity extends Activity {
 	 * to access previous and next wizard steps.
 	 */
 	private ViewPager mPager;
+	
+	public void gotoPreviousDate(){
+		mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+	}
+	
+	public void gotoNextDate(){
+		mPager.setCurrentItem(mPager.getCurrentItem() + 1);
+	}
+	
+	
 
 	/**
 	 * The pager adapter, which provides the pages to the view pager widget.
@@ -74,38 +90,31 @@ public class LotteryResultActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
+		
 
-		Bundle extras = getIntent().getExtras();
-		try {
-			int id = extras.getInt("notificationId");
-			if (id > 0) {
-				NotificationManager myNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-				// remove the notification with the specific id
-				myNotificationManager.cancel(id);
-			}
-		} catch (Exception ex) {
+		// ActionBar actionBar = getActionBar();
+		// actionBar.hide();
 
-		}
+		removeNotification();
 
 		setContentView(R.layout.activity_screen_slide);
-		//getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_screen_slide);
-		// Create an ad.
-		adView = new AdView(this);
-		adView.setAdSize(AdSize.SMART_BANNER);
-		adView.setAdUnitId(AD_UNIT_ID);
+		// getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+		// R.layout.activity_screen_slide);
+		
+//		TextView aTextView = (TextView) findViewById(R.id.currentDate);
+//		aTextView.setText("hello");
 
-		LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
-		layout.addView(adView, 0);
-
-		// AdRequest adRequest = new AdRequest.Builder()
-		// .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-		// .addTestDevice("Hello").build();
-
-		AdRequest adRequest = new AdRequest.Builder().setGender(AdRequest.GENDER_MALE).addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-				.addTestDevice("EF46L01111101079272").build();
-
-		// Start loading the ad in the background.
-		adView.loadAd(adRequest);
+		insertAds();
+		
+//		TextView textView = new TextView(this);
+//		textView.setText("Hello");
+//		
+//		LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
+//		layout.addView(textView, 2);
+		
+		
 
 		lotteryDataSource = new LotteryDataSource(this);
 		lotteryDataSource.open();
@@ -114,7 +123,7 @@ public class LotteryResultActivity extends Activity {
 
 		// Instantiate a ViewPager and a PagerAdapter.
 		mPager = (ViewPager) findViewById(R.id.pager);
-		mPagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager());
+		mPagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager(), this);
 		mPager.setAdapter(mPagerAdapter);
 		mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override
@@ -133,19 +142,58 @@ public class LotteryResultActivity extends Activity {
 		mPager.setCurrentItem(NUM_PAGES / 2, true);
 	}
 
+	private void removeNotification() {
+		Bundle extras = getIntent().getExtras();
+		try {
+			int id = extras.getInt("notificationId");
+			if (id > 0) {
+				NotificationManager myNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+				// remove the notification with the specific id
+				myNotificationManager.cancel(id);
+			}
+		} catch (Exception ex) {
+
+		}
+	}
+
+	private void insertAds() {
+		if (isConnectInternet()) {
+			// Create an ad.
+			adView = new AdView(this);
+			adView.setAdSize(AdSize.SMART_BANNER);
+			adView.setAdUnitId(AD_UNIT_ID);
+			LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
+			layout.addView(adView, 0);
+
+			// AdRequest adRequest = new AdRequest.Builder()
+			// .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+			// .addTestDevice("Hello").build();
+
+			AdRequest adRequest = new AdRequest.Builder().setGender(AdRequest.GENDER_MALE).addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+					.addTestDevice("EF46L01111101079272").build();
+
+			// Start loading the ad in the background.
+			adView.loadAd(adRequest);
+		}
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		getMenuInflater().inflate(R.menu.activity_screen_slide, menu);
 
-		menu.findItem(R.id.action_previous).setEnabled(mPager.getCurrentItem() > 0);
+		getMenuInflater().inflate(R.menu.lottery_menu, menu);
+
+		// menu.findItem(R.id.action_previous).setEnabled(mPager.getCurrentItem()
+		// > 0);
 
 		// Add either a "next" or "finish" button to the action bar, depending
 		// on which page
 		// is currently selected.
-		MenuItem item = menu.add(Menu.NONE, R.id.action_next, Menu.NONE, (mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish
-				: R.string.action_next);
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+		// MenuItem item = menu.add(Menu.NONE, R.id.action_next, Menu.NONE,
+		// (mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ?
+		// R.string.action_finish
+		// : R.string.action_next);
+		// item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM |
+		// MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		return true;
 	}
 
@@ -168,12 +216,12 @@ public class LotteryResultActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 
-		case R.id.action_previous:
-			// Go to the previous step in the wizard. If there is no previous
-			// step,
-			// setCurrentItem will do nothing.
-			mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-			return true;
+//		case R.id.action_previous:
+//			// Go to the previous step in the wizard. If there is no previous
+//			// step,
+//			// setCurrentItem will do nothing.
+//			mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+//			return true;
 
 		case R.id.action_next:
 			// Advance to the next step in the wizard. If there is no next step,
@@ -185,19 +233,28 @@ public class LotteryResultActivity extends Activity {
 
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void clickPreviosDate(View arg0) {
+		Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
+		mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+		invalidateOptionsMenu();
+	}
 
 	/**
 	 * A simple pager adapter that represents 5 {@link ScreenSlidePageFragment}
 	 * objects, in sequence.
 	 */
 	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-		public ScreenSlidePagerAdapter(FragmentManager fm) {
+		LotteryResultActivity lrActivity;
+		
+		public ScreenSlidePagerAdapter(FragmentManager fm, LotteryResultActivity activity) {			
 			super(fm);
+			lrActivity =  activity;
 		}
 
 		@Override
 		public Fragment getItem(int position) {
-			return ScreenSlidePageFragment.create(position, getApplicationContext());
+			return ScreenSlidePageFragment.create(position, getApplicationContext(), lrActivity);
 		}
 
 		@Override
@@ -205,5 +262,7 @@ public class LotteryResultActivity extends Activity {
 			return NUM_PAGES;
 		}
 	}
+
+
 
 }

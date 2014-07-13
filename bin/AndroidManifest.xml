@@ -15,7 +15,7 @@
         android:allowBackup="true"
         android:icon="@drawable/xsmb"
         android:label="@string/app_name"
-        android:theme="@style/CustomActionBarTheme" >
+        android:theme="@style/AppTheme" >
         <receiver android:name="com.alandk.xosomienbac.sync.AlarmReceiver" >
         </receiver>
         <receiver
@@ -30,9 +30,9 @@
         </receiver>
 
         <activity
-            android:name="com.alandk.xosomienbac.activity.LotteryResultActivity"
-            android:label="@string/app_name" 
-            >
+            android:name="com.alandk.xosomienbac.activity.LotteryResultActivity"            
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

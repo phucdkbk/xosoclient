@@ -73,6 +73,11 @@
     <string name="thu7">thứ bảy</string>
     <string name="chunhat">chủ nhật</string>
     
+    <string name="search">Tìm kiếm</string>
+    <string name="refresh">Tải mới</string>
+    <string name="statistic">Thống kê</string>
+    
+    
     
     <string name="newResult">Kết quả ngày</string>
     <string name="resultTitle">Mở thưởng</string>
