@@ -133,7 +133,7 @@ public class ScreenSlidePageFragment extends Fragment {
 
 				Result lotteryResult = convertFromJsonToResultObject(lotteryDBResult.getResult());
 				convertToDisplayResult(lotteryResult);
-			} else {				
+			} else {
 				textTitleView.setText(mContext.getResources().getString(R.string.cannotGetResultTitle));
 			}
 			// display error
