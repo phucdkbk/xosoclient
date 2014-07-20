@@ -1,6 +1,10 @@
 package com.alandk.xosomienbac.activity;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import com.alandk.xosomienbac.activity.ScreenSlidePageFragment;
+import com.alandk.xosomienbac.common.Constants;
 import com.alandk.xosomienbac.database.LotteryDBResult;
 import com.alandk.xosomienbac.database.LotteryDataSource;
 import com.alandk.xosomienbac.sync.AlarmReceiver;
@@ -13,6 +17,9 @@ import com.google.android.gms.ads.AdView;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.NotificationManager;
@@ -23,6 +30,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
@@ -31,12 +39,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.ActionBar;
 
-public class LotteryResultActivity extends Activity{
+public class LotteryResultActivity extends FragmentActivity {
 
 	private static LotteryDataSource lotteryDataSource;
 
@@ -51,38 +60,44 @@ public class LotteryResultActivity extends Activity{
 	}
 
 	/**
-	 * The number of pages (wizard steps) to show in this demo.
-	 */
-	public static final int NUM_PAGES = 100;
-
-	/**
 	 * The pager widget, which handles animation and allows swiping horizontally
 	 * to access previous and next wizard steps.
 	 */
 	private ViewPager mPager;
-	
-	public void gotoPreviousDate(){
+
+	public void gotoPreviousDate() {
 		mPager.setCurrentItem(mPager.getCurrentItem() - 1);
 	}
-	
-	public void gotoNextDate(){
+
+	public void gotoNextDate() {
 		mPager.setCurrentItem(mPager.getCurrentItem() + 1);
 	}
-	
-	
+
+	public void gotoDate(Date date) {
+		int selectItem = Constants.NUM_PAGES / 2 + get_days_between_dates(new Date(), date);
+		mPager.setCurrentItem(selectItem);
+	}
+
+	public int get_days_between_dates(Date date1, Date date2) {
+		// if date2 is more in the future than date1 then the result will be
+		// negative
+		// if date1 is more in the future than date2 then the result will be
+		// positive.
+
+		return (int) ((date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24l));
+	}
 
 	/**
 	 * The pager adapter, which provides the pages to the view pager widget.
 	 */
 	private PagerAdapter mPagerAdapter;
 
-	private void testAlamManager(Context context) {
+	private void setResultNotification(Context context) {
 		Intent alarmIntent = new Intent(context, AlarmReceiver.class);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
 
 		AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		int interval = 10000; // 10 seconds
-
 		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
 		// Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
 	}
@@ -90,38 +105,29 @@ public class LotteryResultActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		
-		
-
 		// ActionBar actionBar = getActionBar();
 		// actionBar.hide();
-
 		removeNotification();
-
 		setContentView(R.layout.activity_screen_slide);
 		// getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
 		// R.layout.activity_screen_slide);
-		
-//		TextView aTextView = (TextView) findViewById(R.id.currentDate);
-//		aTextView.setText("hello");
-
+		// TextView aTextView = (TextView) findViewById(R.id.currentDate);
+		// aTextView.setText("hello");
 		insertAds();
-		
-//		TextView textView = new TextView(this);
-//		textView.setText("Hello");
-//		
-//		LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
-//		layout.addView(textView, 2);
-		
-		
-
+		// TextView textView = new TextView(this);
+		// textView.setText("Hello");
+		//
+		// LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
+		// layout.addView(textView, 2);
 		lotteryDataSource = new LotteryDataSource(this);
 		lotteryDataSource.open();
-
-		testAlamManager(this);
-
+		setResultNotification(this);
 		// Instantiate a ViewPager and a PagerAdapter.
+		setSlilePagerAdapter();
+		mPager.setCurrentItem(com.alandk.xosomienbac.common.Constants.NUM_PAGES / 2, true);
+	}
+
+	private void setSlilePagerAdapter() {
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager(), this);
 		mPager.setAdapter(mPagerAdapter);
@@ -139,7 +145,6 @@ public class LotteryResultActivity extends Activity{
 				invalidateOptionsMenu();
 			}
 		});
-		mPager.setCurrentItem(NUM_PAGES / 2, true);
 	}
 
 	private void removeNotification() {
@@ -152,7 +157,6 @@ public class LotteryResultActivity extends Activity{
 				myNotificationManager.cancel(id);
 			}
 		} catch (Exception ex) {
-
 		}
 	}
 
@@ -179,12 +183,9 @@ public class LotteryResultActivity extends Activity{
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		getMenuInflater().inflate(R.menu.lottery_menu, menu);
-
 		// menu.findItem(R.id.action_previous).setEnabled(mPager.getCurrentItem()
 		// > 0);
-
 		// Add either a "next" or "finish" button to the action bar, depending
 		// on which page
 		// is currently selected.
@@ -204,36 +205,47 @@ public class LotteryResultActivity extends Activity{
 	public static void createLotteryDBResult(int date, String result) {
 		lotteryDataSource.createLotteryResult(date, result);
 	}
+	
+	public static void createOrUpdateLotteryDBResult(int date, String result) {
+		lotteryDataSource.createOrUpdateLotteryDBResult(date, result);
+	}
 
 	public boolean isConnectInternet() {
 		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 		return (networkInfo != null && networkInfo.isConnected());
-
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-
-//		case R.id.action_previous:
-//			// Go to the previous step in the wizard. If there is no previous
-//			// step,
-//			// setCurrentItem will do nothing.
-//			mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-//			return true;
-
+		// case R.id.action_previous:
+		// // Go to the previous step in the wizard. If there is no previous
+		// // step,
+		// // setCurrentItem will do nothing.
+		// mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+		// return true;
 		case R.id.action_next:
 			// Advance to the next step in the wizard. If there is no next step,
 			// setCurrentItem
 			// will do nothing.
 			mPager.setCurrentItem(mPager.getCurrentItem() + 1);
 			return true;
+		case R.id.action_refresh:
+			// mPager.setCurrentItem(mPager.getCurrentItem());
+			int currentPosition = mPager.getCurrentItem();
+			setSlilePagerAdapter();
+			mPager.setCurrentItem(currentPosition);
+			// mPagerAdapter.notifyDataSetChanged();
+			return true;
+		case R.id.action_search:
+			DialogFragment newFragment = new DatePickerFragment();
+			newFragment.show(getFragmentManager(), "datePicker");
+			return true;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void clickPreviosDate(View arg0) {
 		Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
 		mPager.setCurrentItem(mPager.getCurrentItem() - 1);
@@ -246,10 +258,10 @@ public class LotteryResultActivity extends Activity{
 	 */
 	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 		LotteryResultActivity lrActivity;
-		
-		public ScreenSlidePagerAdapter(FragmentManager fm, LotteryResultActivity activity) {			
+
+		public ScreenSlidePagerAdapter(FragmentManager fm, LotteryResultActivity activity) {
 			super(fm);
-			lrActivity =  activity;
+			lrActivity = activity;
 		}
 
 		@Override
@@ -259,10 +271,39 @@ public class LotteryResultActivity extends Activity{
 
 		@Override
 		public int getCount() {
-			return NUM_PAGES;
+			return Constants.NUM_PAGES;
 		}
+
+		// @Override
+		// public int getItemPosition(Object object) {
+		// // TODO Auto-generated method stub
+		// return POSITION_NONE;
+		// //return super.getItemPosition(object);
+		// }
 	}
 
+	public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			// Use the current date as the default date in the picker
+			final Calendar c = Calendar.getInstance();
+			int year = c.get(Calendar.YEAR);
+			int month = c.get(Calendar.MONTH);
+			int day = c.get(Calendar.DAY_OF_MONTH);
 
+			// Create a new instance of DatePickerDialog and return it
+			return new DatePickerDialog(getActivity(), this, year, month, day);
+		}
+
+		@Override
+		public void onDateSet(DatePicker view, int year, int month, int day) {
+			Calendar cal = Calendar.getInstance();
+			cal.set(Calendar.YEAR, year);
+			cal.set(Calendar.MONTH, month);
+			cal.set(Calendar.DATE, day);
+			gotoDate(cal.getTime());
+			// Do something with the date chosen by the user
+		}
+	}
 }

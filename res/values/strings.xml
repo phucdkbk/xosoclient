@@ -81,6 +81,8 @@
     
     <string name="newResult">Kết quả ngày</string>
     <string name="resultTitle">Mở thưởng</string>
+    <string name="cannotGetResultTitle">Không lấy được kết quả</string>
+    <string name="loadingData">Đang tải dữ liệu</string>
 
     <!-- Other strings -->
 

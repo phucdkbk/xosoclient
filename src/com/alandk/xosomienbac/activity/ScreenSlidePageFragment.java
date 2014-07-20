@@ -42,10 +42,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
+import com.alandk.xosomienbac.common.Constants;
 import com.alandk.xosomienbac.common.DisplayResult;
 import com.alandk.xosomienbac.common.Result;
 import com.alandk.xosomienbac.database.LotteryDBResult;
@@ -71,6 +70,8 @@ public class ScreenSlidePageFragment extends Fragment {
 	 */
 	public static final String ARG_PAGE = "page";
 	private DisplayResult displayResult;
+	private TextView textTitleView;
+	private ProgressBar spinner;
 
 	/**
 	 * The fragment's page number, which is set to the argument value for
@@ -104,32 +105,49 @@ public class ScreenSlidePageFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
 		// Inflate the layout containing a title and body text.
 		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page, container, false);
 		initDiplayResult(rootView);
 		int dateInt = getDefaultDisplayDate();
-		LotteryDBResult lotteryDBResult = LotteryResultActivity.getLotteryDBResultByDate(dateInt);
-		if (lotteryDBResult != null) {
-			Result lotteryResult = convertFromJsonToResultObject(lotteryDBResult.getResult());
-			convertToDisplayResult(lotteryResult);
-		} else {
+		NetworkInfo networkInfo = null;
+		textTitleView = (TextView) rootView.findViewById(R.id.showResultTitle);
+		spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);
+		try {
 			ConnectivityManager connMgr = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-			NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-			if (networkInfo != null && networkInfo.isConnected()) {
-				new DownloadWebpageTask(dateInt).execute("http://floating-ravine-3291.herokuapp.com/LotteryResult?date=" + dateInt);
-			} else {
-				// display error
+			networkInfo = connMgr.getActiveNetworkInfo();
+		} catch (Exception ex) {
+		}
+		if (networkInfo != null && networkInfo.isConnected()) {
+			// Set loading information
+			textTitleView.setText("");
+			spinner.setVisibility(View.VISIBLE);
+			new DownloadWebpageTask(dateInt).execute("http://floating-ravine-3291.herokuapp.com/LotteryResult?date=" + dateInt);
+		} else {
+			spinner.setVisibility(View.GONE);
+			LotteryDBResult lotteryDBResult = LotteryResultActivity.getLotteryDBResultByDate(dateInt);
+			if (lotteryDBResult != null) {
+				// Set loading information
+				String strDate = getDisplayDateFromDateInt(dateInt);
+				String dayOfWeek = getDayOfWeekFromStrDate(strDate);
+				textTitleView.setText(mContext.getResources().getString(R.string.resultTitle) + " " + dayOfWeek + " " + strDate);
+
+				Result lotteryResult = convertFromJsonToResultObject(lotteryDBResult.getResult());
+				convertToDisplayResult(lotteryResult);
+			} else {				
+				textTitleView.setText(mContext.getResources().getString(R.string.cannotGetResultTitle));
 			}
+			// display error
 		}
 		//
 		// Set the title view to show the page number.
 
 		// View v = inflater.inflate(R.layout.activity_screen_slide, container);
 		// TextView aTextView = (TextView) v.findViewById(R.id.currentDate);
-		String strDate = setDisplayDate(rootView, dateInt);
+		setDisplayDate(rootView, dateInt);
+		return rootView;
+	}
 
-		Calendar cal = Calendar.getInstance();
+	private Date convertStringtoDate(String strDate) {
 		Date date = null;
 		try {
 			date = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(strDate);
@@ -137,28 +155,16 @@ public class ScreenSlidePageFragment extends Fragment {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		cal.setTime(date);
-		String dayOfWeek = getDayOfWeekVietnamese(cal);
-
-		TextView textTitleView = (TextView) rootView.findViewById(R.id.showResultTitle);
-		textTitleView.setText(mContext.getResources().getString(R.string.resultTitle) + " " + dayOfWeek + " " + strDate);
-
-		return rootView;
+		return date;
 	}
 
-	private String setDisplayDate(ViewGroup rootView, int dateInt) {
+	private void setDisplayDate(ViewGroup rootView, int dateInt) {
 		String strDate = getDisplayDateFromDateInt(dateInt);
 		TextView currentDate = (TextView) rootView.findViewById(R.id.currentDate);
 		currentDate.setText(getDisplayDateFromDateInt(dateInt));
 
 		Calendar cal = Calendar.getInstance();
-		Date date = null;
-		try {
-			date = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(strDate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Date date = convertStringtoDate(strDate);
 		cal.setTime(date);
 		cal.add(Calendar.DATE, -1);
 
@@ -190,7 +196,6 @@ public class ScreenSlidePageFragment extends Fragment {
 				lrActivity.gotoNextDate();
 			}
 		});
-		return strDate;
 	}
 
 	private String getDayOfWeekVietnamese(Calendar cal) {
@@ -223,7 +228,7 @@ public class ScreenSlidePageFragment extends Fragment {
 	private int getDefaultDisplayDate() {
 		Calendar cal = Calendar.getInstance();
 		// cal.set(Calendar.YEAR, 2009);
-		cal.add(Calendar.DATE, mPageNumber - LotteryResultActivity.NUM_PAGES / 2);
+		cal.add(Calendar.DATE, mPageNumber - Constants.NUM_PAGES / 2);
 		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY);
 		if (hourOfDay < 18) {
 			cal.add(Calendar.DATE, -1);
@@ -364,9 +369,18 @@ public class ScreenSlidePageFragment extends Fragment {
 					Result lotteryResult = convertFromJsonToResultObject(result);
 					Gson gson = new Gson();
 					if (lotteryResult.isHasFullValue()) {
-						LotteryResultActivity.createLotteryDBResult(date, gson.toJson(lotteryResult));
+						LotteryResultActivity.createOrUpdateLotteryDBResult(date, gson.toJson(lotteryResult));
 					}
 					convertToDisplayResult(lotteryResult);
+
+					// Remove loading progess
+					String strDate = getDisplayDateFromDateInt(date);
+					String dayOfWeek = getDayOfWeekFromStrDate(strDate);
+					textTitleView.setText(mContext.getResources().getString(R.string.resultTitle) + " " + dayOfWeek + " " + strDate); //
+					spinner.setVisibility(View.GONE);
+				} else {
+					textTitleView.setText(mContext.getResources().getString(R.string.cannotGetResultTitle));
+					spinner.setVisibility(View.GONE);
 				}
 			} catch (Exception e) {
 				Log.e("E", e.getMessage());
@@ -374,6 +388,15 @@ public class ScreenSlidePageFragment extends Fragment {
 			}
 
 		}
+
+	}
+
+	public String getDayOfWeekFromStrDate(String strDate) {
+		Date date = convertStringtoDate(strDate);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		String dayOfWeek = getDayOfWeekVietnamese(cal);
+		return dayOfWeek;
 	}
 
 	/**
