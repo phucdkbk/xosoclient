@@ -30,11 +30,12 @@
         android:icon="@drawable/ic_action_search"
         android:title="@string/search"/>
     <item
-        android:id="@+id/action_overflow"
+        android:id="@+id/action_statistic"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:icon="@drawable/ic_action_overflow"
-        android:title="@string/statistic"/>
+        android:icon="@drawable/ic_action_help"
+        android:title="@string/statistic"/>           
+    
 <!--     <item android:id="@+id/action_previous" -->
 <!--         android:title="@string/action_previous" -->
 <!--         android:showAsAction="ifRoom|withText" /> -->
