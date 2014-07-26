@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.alandk.xosomienbac.activity.ScreenSlidePageFragment;
 import com.alandk.xosomienbac.common.Constants;
+import com.alandk.xosomienbac.common.LotteryUtils;
 import com.alandk.xosomienbac.database.LotteryDBResult;
 import com.alandk.xosomienbac.database.LotteryDataSource;
 import com.alandk.xosomienbac.sync.AlarmReceiver;
@@ -161,7 +162,7 @@ public class LotteryResultActivity extends FragmentActivity {
 	}
 
 	private void insertAds() {
-		if (isConnectInternet()) {
+		if (LotteryUtils.isConnectInternet(this)) {
 			// Create an ad.
 			adView = new AdView(this);
 			adView.setAdSize(AdSize.SMART_BANNER);
@@ -208,13 +209,7 @@ public class LotteryResultActivity extends FragmentActivity {
 	
 	public static void createOrUpdateLotteryDBResult(int date, String result) {
 		lotteryDataSource.createOrUpdateLotteryDBResult(date, result);
-	}
-
-	public boolean isConnectInternet() {
-		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-		return (networkInfo != null && networkInfo.isConnected());
-	}
+	}	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

@@ -46,6 +46,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.alandk.xosomienbac.common.Constants;
 import com.alandk.xosomienbac.common.DisplayResult;
+import com.alandk.xosomienbac.common.LotteryUtils;
 import com.alandk.xosomienbac.common.Result;
 import com.alandk.xosomienbac.database.LotteryDBResult;
 import com.example.xosomienbac.R;
@@ -108,16 +109,10 @@ public class ScreenSlidePageFragment extends Fragment {
 		// Inflate the layout containing a title and body text.
 		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page, container, false);
 		initDiplayResult(rootView);
-		int dateInt = getDefaultDisplayDate();
-		NetworkInfo networkInfo = null;
+		int dateInt = getDefaultDisplayDate();		
 		textTitleView = (TextView) rootView.findViewById(R.id.showResultTitle);
-		spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);
-		try {
-			ConnectivityManager connMgr = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-			networkInfo = connMgr.getActiveNetworkInfo();
-		} catch (Exception ex) {
-		}
-		if (networkInfo != null && networkInfo.isConnected()) {
+		spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);		
+		if (LotteryUtils.isConnectInternet(mContext)) {
 			// Set loading information
 			textTitleView.setText("");
 			spinner.setVisibility(View.VISIBLE);

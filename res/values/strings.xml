@@ -11,7 +11,7 @@
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
-  limitations under the License.
+  limitations under the License.
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
@@ -63,8 +63,6 @@
     <string name="dau7">7</string>
     <string name="dau8">8</string>
     <string name="dau9">9</string>
-    
-    
     <string name="thu2">thứ hai</string>
     <string name="thu3">thứ ba</string>
     <string name="thu4">thứ tư</string>
@@ -72,16 +70,16 @@
     <string name="thu6">thứ sáu</string>
     <string name="thu7">thứ bảy</string>
     <string name="chunhat">chủ nhật</string>
-    
     <string name="search">Tìm kiếm</string>
     <string name="refresh">Tải mới</string>
     <string name="statistic">Thống kê</string>
     <string name="thongkelogan">Thống kê lô gan</string>
     <string name="thongkeitnhieu">Thống kê về ít nhiều</string>
-    
-    
-    
-    
+    <string name="lotogan">Loto gan</string>
+    <string name="solanchuara">Số lần chưa ra</string>
+    <string name="giaidacbiet">Đặc biệt</string>
+    <string name="giaiLoto">Loto</string>
+    <string name="solanxuathien">Xuất hiện</string>
     <string name="newResult">Kết quả ngày</string>
     <string name="resultTitle">Mở thưởng</string>
     <string name="cannotGetResultTitle">Không lấy được kết quả</string>

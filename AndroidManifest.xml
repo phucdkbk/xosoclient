@@ -54,6 +54,15 @@
             android:name="com.alandk.xosomienbac.activity.StatisticActivity"
             android:label="Statistic lottery result" >
         </activity>
+        <activity
+            android:name="com.alandk.xosomienbac.activity.ThongkeLoganActivity"
+            android:label="Thong ke lo gan" >
+        </activity>
+        
+        <activity
+            android:name="com.alandk.xosomienbac.activity.ThongkeItnhieuActivity"
+            android:label="Thong ke it nhieu" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
