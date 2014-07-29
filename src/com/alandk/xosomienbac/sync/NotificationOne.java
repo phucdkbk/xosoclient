@@ -1,6 +1,6 @@
 package com.alandk.xosomienbac.sync;
 
-import com.example.xosomienbac.R;
+import com.alandk.xosomienbac.R;
 
 import android.os.Bundle;
 import android.widget.TextView;

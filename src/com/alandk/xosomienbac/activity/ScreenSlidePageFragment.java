@@ -49,7 +49,7 @@ import com.alandk.xosomienbac.common.DisplayResult;
 import com.alandk.xosomienbac.common.LotteryUtils;
 import com.alandk.xosomienbac.common.Result;
 import com.alandk.xosomienbac.database.LotteryDBResult;
-import com.example.xosomienbac.R;
+import com.alandk.xosomienbac.R;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 

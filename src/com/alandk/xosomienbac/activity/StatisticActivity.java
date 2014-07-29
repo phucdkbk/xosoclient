@@ -1,6 +1,6 @@
 package com.alandk.xosomienbac.activity;
 
-import com.example.xosomienbac.R;
+import com.alandk.xosomienbac.R;
 
 import android.app.Activity;
 import android.content.Intent;

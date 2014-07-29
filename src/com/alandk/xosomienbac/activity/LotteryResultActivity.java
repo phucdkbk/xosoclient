@@ -10,7 +10,7 @@ import com.alandk.xosomienbac.database.LotteryDBResult;
 import com.alandk.xosomienbac.database.LotteryDataSource;
 import com.alandk.xosomienbac.sync.AlarmReceiver;
 //import com.alandk.xosomienbac.ScreenSlideActivity.ScreenSlidePagerAdapter;
-import com.example.xosomienbac.R;
+import com.alandk.xosomienbac.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;

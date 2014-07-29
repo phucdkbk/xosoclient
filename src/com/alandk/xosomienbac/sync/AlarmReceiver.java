@@ -11,7 +11,7 @@ import com.alandk.xosomienbac.activity.ScreenSlidePageFragment;
 import com.alandk.xosomienbac.common.Result;
 import com.alandk.xosomienbac.database.LotteryDBResult;
 import com.alandk.xosomienbac.database.LotteryDataSource;
-import com.example.xosomienbac.R;
+import com.alandk.xosomienbac.R;
 import com.google.gson.Gson;
 
 import android.media.Ringtone;
