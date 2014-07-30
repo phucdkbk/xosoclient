@@ -43,13 +43,11 @@ public class AlarmReceiver extends BroadcastReceiver {
 		// displayNotificationOne(context, "");
 		lotteryDataSource = new LotteryDataSource(context);
 		lotteryDataSource.open();
-		haveNewResult(context);
-
+		checkHaveNewResult(context);
 	}
 
-	protected void displayNotificationOne(Context context, String displayText) {
+	protected void displayNotificationNewResult(Context context, String displayText) {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-
 		// Invoking the default notification service
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
 
@@ -77,12 +75,14 @@ public class AlarmReceiver extends BroadcastReceiver {
 		PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_ONE_SHOT);
 		// start the activity when the user clicks the notification text
 		mBuilder.setContentIntent(resultPendingIntent);
-
 		myNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
 		// pass the Notification object to the system
 		myNotificationManager.notify(notificationIdOne, mBuilder.getNotification());
+		playSoundNotification(context);
+	}
 
+	private static void playSoundNotification(Context context) {
 		try {
 			Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 			Ringtone r = RingtoneManager.getRingtone(context.getApplicationContext(), notification);
@@ -92,10 +92,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 		}
 	}
 
-	private String haveNewResult(Context context) {
-		String newResult = "";
+	private void checkHaveNewResult(Context context) {
 		Calendar cal = Calendar.getInstance();
-		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		DateFormat df = new SimpleDateFormat("yyyyMMdd", Locale.US);
 		int dateInt = Integer.valueOf(df.format(cal.getTime()));
 
 		ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -105,7 +104,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 		} else {
 			// display error
 		}
-		return newResult;
 	}
 
 	private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
@@ -139,7 +137,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 					Gson gson = new Gson();
 					if (newResult != null && !newResult.isEmpty()) {
 						lotteryDataSource.createOrUpdateLotteryDBResult(date, gson.toJson(currentResult));
-						displayNotificationOne(context, newResult);
+						displayNotificationNewResult(context, newResult);
 					}
 				}
 			} catch (Exception e) {
@@ -151,15 +149,13 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 		private String getNewResult(Result currentResult) {
 			Calendar cal = Calendar.getInstance();
-			DateFormat df = new SimpleDateFormat("yyyyMMdd");
+			DateFormat df = new SimpleDateFormat("yyyyMMdd", Locale.US);
 			int dateInt = Integer.valueOf(df.format(cal.getTime()));
 			LotteryDBResult lotteryDBResult = lotteryDataSource.getLotteryResultByDate(dateInt);
 			Result oldResult = null;
 			if (lotteryDBResult != null) {
 				oldResult = ScreenSlidePageFragment.convertFromJsonToResultObject(lotteryDBResult.getResult());
 			}
-
-			// TODO Auto-generated method stub
 			return getDifferentResult(currentResult, oldResult, context);
 		}
 	}
@@ -179,32 +175,32 @@ public class AlarmReceiver extends BroadcastReceiver {
 		String differentNumber;
 		differentNumber = getDifferentNumber(fromResult.getArrGiaiNhi(), toResult.getArrGiaiNhi());
 		if (differentNumber != null && !differentNumber.isEmpty()) {
-			differentResult += context.getResources().getString(R.string.giaiNhiLabel) + ": " + differentNumber;
+			differentResult += context.getResources().getString(R.string.giaiNhiLabel) + ": " + differentNumber + " ";
 		}
 
 		differentNumber = getDifferentNumber(fromResult.getArrGiaiBa(), toResult.getArrGiaiBa());
 		if (differentNumber != null && !differentNumber.isEmpty()) {
-			differentResult += context.getResources().getString(R.string.giaiBaLabel) + ": " + differentNumber;
+			differentResult += context.getResources().getString(R.string.giaiBaLabel) + ": " + differentNumber + " ";
 		}
 
 		differentNumber = getDifferentNumber(fromResult.getArrGiaiTu(), toResult.getArrGiaiTu());
 		if (differentNumber != null && !differentNumber.isEmpty()) {
-			differentResult += context.getResources().getString(R.string.giaiTuLabel) + ": " + differentNumber;
+			differentResult += context.getResources().getString(R.string.giaiTuLabel) + ": " + differentNumber + " ";
 		}
 
 		differentNumber = getDifferentNumber(fromResult.getArrGiaiNam(), toResult.getArrGiaiNam());
 		if (differentNumber != null && !differentNumber.isEmpty()) {
-			differentResult += context.getResources().getString(R.string.giaiNamLabel) + ": " + differentNumber;
+			differentResult += context.getResources().getString(R.string.giaiNamLabel) + ": " + differentNumber + " ";
 		}
 
 		differentNumber = getDifferentNumber(fromResult.getArrGiaiSau(), toResult.getArrGiaiSau());
 		if (differentNumber != null && !differentNumber.isEmpty()) {
-			differentResult += context.getResources().getString(R.string.giaiSauLabel) + ": " + differentNumber;
+			differentResult += context.getResources().getString(R.string.giaiSauLabel) + ": " + differentNumber + " ";
 		}
 
 		differentNumber = getDifferentNumber(fromResult.getArrGiaiBay(), toResult.getArrGiaiBay());
 		if (differentNumber != null && !differentNumber.isEmpty()) {
-			differentResult += context.getResources().getString(R.string.giaiBayLabel) + ": " + differentNumber;
+			differentResult += context.getResources().getString(R.string.giaiBayLabel) + ": " + differentNumber + " ";
 		}
 
 		return differentResult;

@@ -84,6 +84,9 @@
     <string name="resultTitle">Mở thưởng</string>
     <string name="cannotGetResultTitle">Không lấy được kết quả</string>
     <string name="loadingData">Đang tải dữ liệu</string>
+    <string name="ThongkeLogan">Thống kê Lô gan</string>
+    <string name="ThongkeVeItnhieu">Thống kê về ít nhiều</string>
+    
 
     <!-- Other strings -->
 

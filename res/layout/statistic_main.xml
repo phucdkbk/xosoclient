@@ -8,14 +8,14 @@
         android:id="@+id/thongkelogan"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/thongkelogan" 
-        android:textSize="20sp"/>
+        android:text="@string/thongkelogan"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/thongkeitnhieu"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/thongkeitnhieu" 
-        android:textSize="20sp"/>
+        android:text="@string/thongkeitnhieu"
+        android:textSize="20sp" />
 
 </LinearLayout>

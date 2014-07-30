@@ -30,11 +30,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
 import android.app.Fragment;
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -125,19 +122,12 @@ public class ScreenSlidePageFragment extends Fragment {
 				String strDate = getDisplayDateFromDateInt(dateInt);
 				String dayOfWeek = getDayOfWeekFromStrDate(strDate);
 				textTitleView.setText(mContext.getResources().getString(R.string.resultTitle) + " " + dayOfWeek + " " + strDate);
-
 				Result lotteryResult = convertFromJsonToResultObject(lotteryDBResult.getResult());
 				convertToDisplayResult(lotteryResult);
 			} else {
 				textTitleView.setText(mContext.getResources().getString(R.string.cannotGetResultTitle));
-			}
-			// display error
-		}
-		//
-		// Set the title view to show the page number.
-
-		// View v = inflater.inflate(R.layout.activity_screen_slide, container);
-		// TextView aTextView = (TextView) v.findViewById(R.id.currentDate);
+			} 
+		}		
 		setDisplayDate(rootView, dateInt);
 		return rootView;
 	}

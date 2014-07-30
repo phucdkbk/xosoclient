@@ -8,31 +8,26 @@ import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
-import com.alandk.xosomienbac.common.LotteryUtils;
-import com.alandk.xosomienbac.common.Result;
-import com.alandk.xosomienbac.thongke.CountItNhieu;
-import com.alandk.xosomienbac.R;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.alandk.xosomienbac.R;
+import com.alandk.xosomienbac.common.LotteryUtils;
+import com.alandk.xosomienbac.thongke.CountItNhieu;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+
 public class ThongkeItnhieuActivity extends Activity {
-	private TableLayout tableThongkeItnhieu;
+	private TableLayout tableThongkeItnhieu;	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +51,7 @@ public class ThongkeItnhieuActivity extends Activity {
 		InputStream is = null;
 		// Only display the first 500 characters of the retrieved
 		// web page content.
-		int len = 10000;
-
+		//int len = 10000;
 		try {
 			URL url = new URL(myurl);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -73,7 +67,7 @@ public class ThongkeItnhieuActivity extends Activity {
 
 			// Convert the InputStream into a string
 			// String contentAsString = readIt(is, len);
-			String contentAsString = convertStreamToString(is);
+			String contentAsString = LotteryUtils.convertStreamToString(is);
 			return contentAsString;
 		} catch (Exception e) {
 			Log.e("E", e.getMessage());
@@ -95,11 +89,7 @@ public class ThongkeItnhieuActivity extends Activity {
 		reader.read(buffer);
 		return new String(buffer);
 	}
-
-	public static String convertStreamToString(java.io.InputStream is) {
-		Scanner s = new Scanner(is, "UTF-8").useDelimiter("//A");
-		return s.hasNext() ? s.next() : "";
-	}
+	
 
 	private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
 		private Context mContext;
@@ -123,38 +113,51 @@ public class ThongkeItnhieuActivity extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			try {
-				// result = result + "]";
-				// result = result.trim();
-				// result = result.substring(0, result.lastIndexOf("]"));
-				// List<CountLoGan> listLoGan = new ArrayList<CountLoGan>();
-
 				Gson gson = new Gson();
 				JsonReader reader = new JsonReader(new StringReader(result));
 				reader.setLenient(true);
 				List<CountItNhieu> listItNhieu = gson.fromJson(reader, new TypeToken<List<CountItNhieu>>() {
 				}.getType());
 				for (int i = 0; i < 15; i++) {
-					CountItNhieu countItNhieu = listItNhieu.get(i);
+					CountItNhieu countItNhieuLoto = listItNhieu.get(i);
+					CountItNhieu countItNhieuDacbiet = listItNhieu.get(i + 100);
 					TableRow row = new TableRow(mContext);
-					//TableRow.LayoutParams lpRow = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2);
 					TableRow.LayoutParams lpRow = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 					row.setLayoutParams(lpRow);
-					TextView loto = new TextView(mContext);
+					
+					TextView dacbiet = new TextView(mContext);
 					TableRow.LayoutParams lpCol1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2);
-					loto.setLayoutParams(lpCol1);
-					loto.setText(countItNhieu.getResult());
+					dacbiet.setLayoutParams(lpCol1);
+					dacbiet.setText(countItNhieuDacbiet.getResult());
+					dacbiet.setBackground(mContext.getResources().getDrawable(R.drawable.border));
+					dacbiet.setGravity(Gravity.CENTER);
+					dacbiet.setTextSize(20);
+					TextView solanchuaveDacbiet = new TextView(mContext);
+					TableRow.LayoutParams lpCol2 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 3);
+					solanchuaveDacbiet.setLayoutParams(lpCol2);
+					solanchuaveDacbiet.setText(String.valueOf(countItNhieuDacbiet.getCount()));
+					solanchuaveDacbiet.setBackground(mContext.getResources().getDrawable(R.drawable.border));
+					solanchuaveDacbiet.setGravity(Gravity.CENTER);
+					solanchuaveDacbiet.setTextSize(20);
+					row.addView(dacbiet);
+					row.addView(solanchuaveDacbiet);										
+					
+					TextView loto = new TextView(mContext);
+					TableRow.LayoutParams lpCol3 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2);
+					loto.setLayoutParams(lpCol3);
+					loto.setText(countItNhieuLoto.getResult());
 					loto.setBackground(mContext.getResources().getDrawable(R.drawable.border));
 					loto.setGravity(Gravity.CENTER);
 					loto.setTextSize(20);
-					TextView solanchuave = new TextView(mContext);
-					TableRow.LayoutParams lpCol2 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 3);
-					solanchuave.setLayoutParams(lpCol2);
-					solanchuave.setText(String.valueOf(countItNhieu.getCount()));
-					solanchuave.setBackground(mContext.getResources().getDrawable(R.drawable.border));
-					solanchuave.setGravity(Gravity.CENTER);
-					solanchuave.setTextSize(20);
+					TextView solanchuaveLoto = new TextView(mContext);
+					TableRow.LayoutParams lpCol4 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 3);
+					solanchuaveLoto.setLayoutParams(lpCol4);
+					solanchuaveLoto.setText(String.valueOf(countItNhieuLoto.getCount()));
+					solanchuaveLoto.setBackground(mContext.getResources().getDrawable(R.drawable.border));
+					solanchuaveLoto.setGravity(Gravity.CENTER);
+					solanchuaveLoto.setTextSize(20);
 					row.addView(loto);
-					row.addView(solanchuave);
+					row.addView(solanchuaveLoto);
 					tableThongkeItnhieu.addView(row, i + 1);
 				}
 			} catch (Exception e) {

@@ -3,48 +3,34 @@ package com.alandk.xosomienbac.activity;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.alandk.xosomienbac.activity.ScreenSlidePageFragment;
-import com.alandk.xosomienbac.common.Constants;
-import com.alandk.xosomienbac.common.LotteryUtils;
-import com.alandk.xosomienbac.database.LotteryDBResult;
-import com.alandk.xosomienbac.database.LotteryDataSource;
-import com.alandk.xosomienbac.sync.AlarmReceiver;
-//import com.alandk.xosomienbac.ScreenSlideActivity.ScreenSlidePagerAdapter;
-import com.alandk.xosomienbac.R;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.app.ActionBar;
+
+import com.alandk.xosomienbac.R;
+import com.alandk.xosomienbac.common.Constants;
+import com.alandk.xosomienbac.common.LotteryUtils;
+import com.alandk.xosomienbac.database.LotteryDBResult;
+import com.alandk.xosomienbac.database.LotteryDataSource;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 public class LotteryResultActivity extends FragmentActivity {
 
@@ -84,46 +70,23 @@ public class LotteryResultActivity extends FragmentActivity {
 		// negative
 		// if date1 is more in the future than date2 then the result will be
 		// positive.
-
 		return (int) ((date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24l));
 	}
 
 	/**
 	 * The pager adapter, which provides the pages to the view pager widget.
 	 */
-	private PagerAdapter mPagerAdapter;
-
-	private void setResultNotification(Context context) {
-		Intent alarmIntent = new Intent(context, AlarmReceiver.class);
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
-
-		AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-		int interval = 10000; // 10 seconds
-		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-		// Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
-	}
+	private PagerAdapter mPagerAdapter;	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ActionBar actionBar = getActionBar();
-		// actionBar.hide();
 		removeNotification();
 		setContentView(R.layout.activity_screen_slide);
-		// getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
-		// R.layout.activity_screen_slide);
-		// TextView aTextView = (TextView) findViewById(R.id.currentDate);
-		// aTextView.setText("hello");
 		insertAds();
-		// TextView textView = new TextView(this);
-		// textView.setText("Hello");
-		//
-		// LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
-		// layout.addView(textView, 2);
 		lotteryDataSource = new LotteryDataSource(this);
 		lotteryDataSource.open();
-		setResultNotification(this);
-		// Instantiate a ViewPager and a PagerAdapter.
+		LotteryUtils.setResultNotification(this); 
 		setSlilePagerAdapter();
 		mPager.setCurrentItem(com.alandk.xosomienbac.common.Constants.NUM_PAGES / 2, true);
 	}
@@ -169,14 +132,11 @@ public class LotteryResultActivity extends FragmentActivity {
 			adView.setAdUnitId(AD_UNIT_ID);
 			LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
 			layout.addView(adView, 0);
-
-			// AdRequest adRequest = new AdRequest.Builder()
-			// .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-			// .addTestDevice("Hello").build();
-
-			AdRequest adRequest = new AdRequest.Builder().setGender(AdRequest.GENDER_MALE).addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-					.addTestDevice("EF46L01111101079272").build();
-
+//			AdRequest adRequest = new AdRequest.Builder().setGender(AdRequest.GENDER_MALE)
+//					.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+//					.addTestDevice("EF46L01111101079272").build();
+			
+			AdRequest adRequest = new AdRequest.Builder().build();
 			// Start loading the ad in the background.
 			adView.loadAd(adRequest);
 		}

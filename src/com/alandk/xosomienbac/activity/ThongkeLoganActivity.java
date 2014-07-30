@@ -8,28 +8,23 @@ import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
-import com.alandk.xosomienbac.common.LotteryUtils;
-import com.alandk.xosomienbac.common.Result;
-import com.alandk.xosomienbac.thongke.CountLoGan;
-import com.alandk.xosomienbac.R;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.alandk.xosomienbac.R;
+import com.alandk.xosomienbac.common.LotteryUtils;
+import com.alandk.xosomienbac.thongke.CountLoGan;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 
 public class ThongkeLoganActivity extends Activity {
 	private TableLayout tableLogan;
@@ -56,7 +51,7 @@ public class ThongkeLoganActivity extends Activity {
 		InputStream is = null;
 		// Only display the first 500 characters of the retrieved
 		// web page content.
-		int len = 5000;
+		//int len = 5000;
 
 		try {
 			URL url = new URL(myurl);
@@ -73,7 +68,7 @@ public class ThongkeLoganActivity extends Activity {
 
 			// Convert the InputStream into a string
 			// String contentAsString = readIt(is, len);
-			String contentAsString = convertStreamToString(is);
+			String contentAsString = LotteryUtils.convertStreamToString(is);
 			return contentAsString;
 		} catch (Exception e) {
 			Log.e("E", e.getMessage());
@@ -94,12 +89,7 @@ public class ThongkeLoganActivity extends Activity {
 		char[] buffer = new char[len];
 		reader.read(buffer);
 		return new String(buffer);
-	}
-
-	public static String convertStreamToString(java.io.InputStream is) {
-		Scanner s = new Scanner(is, "UTF-8").useDelimiter("//A");
-		return s.hasNext() ? s.next() : "";
-	}
+	}	
 
 	private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
 		private Context mContext;
