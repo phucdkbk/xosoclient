@@ -118,22 +118,23 @@ public class ThongkeItnhieuActivity extends Activity {
 				reader.setLenient(true);
 				List<CountItNhieu> listItNhieu = gson.fromJson(reader, new TypeToken<List<CountItNhieu>>() {
 				}.getType());
-				for (int i = 0; i < 15; i++) {
+				int measureHeight = 0;
+				for (int i = 0; i < 10; i++) {
 					CountItNhieu countItNhieuLoto = listItNhieu.get(i);
 					CountItNhieu countItNhieuDacbiet = listItNhieu.get(i + 100);
 					TableRow row = new TableRow(mContext);
-					TableRow.LayoutParams lpRow = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+					TableRow.LayoutParams lpRow = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
 					row.setLayoutParams(lpRow);
 					
 					TextView dacbiet = new TextView(mContext);
-					TableRow.LayoutParams lpCol1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2);
+					TableRow.LayoutParams lpCol1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 2);
 					dacbiet.setLayoutParams(lpCol1);
 					dacbiet.setText(countItNhieuDacbiet.getResult());
 					dacbiet.setBackground(mContext.getResources().getDrawable(R.drawable.border));
 					dacbiet.setGravity(Gravity.CENTER);
-					dacbiet.setTextSize(20);
+					dacbiet.setTextSize(18);
 					TextView solanchuaveDacbiet = new TextView(mContext);
-					TableRow.LayoutParams lpCol2 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 3);
+					TableRow.LayoutParams lpCol2 = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 3);
 					solanchuaveDacbiet.setLayoutParams(lpCol2);
 					solanchuaveDacbiet.setText(String.valueOf(countItNhieuDacbiet.getCount()));
 					solanchuaveDacbiet.setBackground(mContext.getResources().getDrawable(R.drawable.border));
@@ -143,23 +144,69 @@ public class ThongkeItnhieuActivity extends Activity {
 					row.addView(solanchuaveDacbiet);										
 					
 					TextView loto = new TextView(mContext);
-					TableRow.LayoutParams lpCol3 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2);
+					TableRow.LayoutParams lpCol3 = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 2);
 					loto.setLayoutParams(lpCol3);
 					loto.setText(countItNhieuLoto.getResult());
 					loto.setBackground(mContext.getResources().getDrawable(R.drawable.border));
 					loto.setGravity(Gravity.CENTER);
 					loto.setTextSize(20);
 					TextView solanchuaveLoto = new TextView(mContext);
-					TableRow.LayoutParams lpCol4 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 3);
+					TableRow.LayoutParams lpCol4 = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 3);
 					solanchuaveLoto.setLayoutParams(lpCol4);
 					solanchuaveLoto.setText(String.valueOf(countItNhieuLoto.getCount()));
 					solanchuaveLoto.setBackground(mContext.getResources().getDrawable(R.drawable.border));
 					solanchuaveLoto.setGravity(Gravity.CENTER);
-					solanchuaveLoto.setTextSize(20);
+					solanchuaveLoto.setTextSize(18);
 					row.addView(loto);
 					row.addView(solanchuaveLoto);
-					tableThongkeItnhieu.addView(row, i + 1);
+					measureHeight +=row.getMeasuredHeight();
+					tableThongkeItnhieu.addView(row, i + 2);
 				}
+				
+				for (int i = 0; i < 10; i++) {
+					CountItNhieu countItNhieuLoto = listItNhieu.get(90 + i);
+					CountItNhieu countItNhieuDacbiet = listItNhieu.get(i + 190);
+					TableRow row = new TableRow(mContext);
+					TableRow.LayoutParams lpRow = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
+					row.setLayoutParams(lpRow);
+					
+					TextView dacbiet = new TextView(mContext);
+					TableRow.LayoutParams lpCol1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 2);
+					dacbiet.setLayoutParams(lpCol1);
+					dacbiet.setText(countItNhieuDacbiet.getResult());
+					dacbiet.setBackground(mContext.getResources().getDrawable(R.drawable.border));
+					dacbiet.setGravity(Gravity.CENTER);
+					dacbiet.setTextSize(18);
+					TextView solanchuaveDacbiet = new TextView(mContext);
+					TableRow.LayoutParams lpCol2 = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 3);
+					solanchuaveDacbiet.setLayoutParams(lpCol2);
+					solanchuaveDacbiet.setText(String.valueOf(countItNhieuDacbiet.getCount()));
+					solanchuaveDacbiet.setBackground(mContext.getResources().getDrawable(R.drawable.border));
+					solanchuaveDacbiet.setGravity(Gravity.CENTER);
+					solanchuaveDacbiet.setTextSize(20);
+					row.addView(dacbiet);
+					row.addView(solanchuaveDacbiet);										
+					
+					TextView loto = new TextView(mContext);
+					TableRow.LayoutParams lpCol3 = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 2);
+					loto.setLayoutParams(lpCol3);
+					loto.setText(countItNhieuLoto.getResult());
+					loto.setBackground(mContext.getResources().getDrawable(R.drawable.border));
+					loto.setGravity(Gravity.CENTER);
+					loto.setTextSize(20);
+					TextView solanchuaveLoto = new TextView(mContext);
+					TableRow.LayoutParams lpCol4 = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 3);
+					solanchuaveLoto.setLayoutParams(lpCol4);
+					solanchuaveLoto.setText(String.valueOf(countItNhieuLoto.getCount()));
+					solanchuaveLoto.setBackground(mContext.getResources().getDrawable(R.drawable.border));
+					solanchuaveLoto.setGravity(Gravity.CENTER);
+					solanchuaveLoto.setTextSize(18);
+					row.addView(loto);
+					row.addView(solanchuaveLoto);
+					tableThongkeItnhieu.addView(row, i + 13);
+					measureHeight +=row.getMeasuredHeight();
+				}				
+				//tableThongkeItnhieu.measure(tableThongkeItnhieu.getMeasuredWidth(), 10000000);
 			} catch (Exception e) {
 				Log.e("E", e.getMessage());
 				// throw e;

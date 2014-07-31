@@ -134,8 +134,7 @@ public class LotteryResultActivity extends FragmentActivity {
 			layout.addView(adView, 0);
 //			AdRequest adRequest = new AdRequest.Builder().setGender(AdRequest.GENDER_MALE)
 //					.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-//					.addTestDevice("EF46L01111101079272").build();
-			
+//					.addTestDevice("EF46L01111101079272").build();			
 			AdRequest adRequest = new AdRequest.Builder().build();
 			// Start loading the ad in the background.
 			adView.loadAd(adRequest);

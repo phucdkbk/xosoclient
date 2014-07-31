@@ -1734,8 +1734,8 @@ containing a value of this type.
         public static final int auth_client_requested_by_msg=0x7f060005;
         public static final int auth_client_using_bad_version_title=0x7f060000;
         public static final int cannotGetResultTitle=0x7f060067;
-        public static final int card_back_description=0x7f06006e;
-        public static final int card_back_title=0x7f06006d;
+        public static final int card_back_description=0x7f060070;
+        public static final int card_back_title=0x7f06006f;
         public static final int chunhat=0x7f06005a;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -1854,12 +1854,14 @@ containing a value of this type.
         public static final int giaiSauLabel=0x7f060045;
         public static final int giaiTuLabel=0x7f060043;
         public static final int giaidacbiet=0x7f060062;
+        public static final int giaiveit=0x7f06006c;
+        public static final int giaivenhieu=0x7f06006b;
         /**  Other strings 
          */
-        public static final int hello=0x7f06006b;
+        public static final int hello=0x7f06006d;
         public static final int lastNumber=0x7f060049;
         public static final int loadingData=0x7f060068;
-        public static final int lorem_ipsum=0x7f06006f;
+        public static final int lorem_ipsum=0x7f060071;
         public static final int lotogan=0x7f060060;
         public static final int newResult=0x7f060065;
         public static final int refresh=0x7f06005c;
@@ -1869,7 +1871,7 @@ containing a value of this type.
         public static final int solanchuara=0x7f060061;
         public static final int solanxuathien=0x7f060064;
         public static final int statistic=0x7f06005d;
-        public static final int statisticResult=0x7f06006c;
+        public static final int statisticResult=0x7f06006e;
         public static final int thongkeitnhieu=0x7f06005f;
         public static final int thongkelogan=0x7f06005e;
         public static final int thu2=0x7f060054;

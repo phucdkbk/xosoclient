@@ -1,48 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tableThongkeItnhieu"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:stretchColumns="1" >
+    android:layout_height="wrap_content" >
 
-    <TableRow
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:id="@+id/tableThongkeItnhieu"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="0dip" >
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:stretchColumns="1" >
 
-        <TextView
-            style="@style/DausoLabel"
-            android:layout_width="0dip"
+        <TableRow
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:background="@drawable/border"
-            android:text="@string/giaidacbiet" />
+            android:padding="0dip" >
 
-        <TextView
-            style="@style/DuoisoLabel"
-            android:layout_width="0dip"
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/border"
+                android:text="@string/giaivenhieu" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:background="@drawable/border"
-            android:text="@string/solanxuathien" />
+            android:padding="0dip" >
 
-        <TextView
-            style="@style/DausoLabel"
-            android:layout_width="0dip"
+            <TextView
+                style="@style/DausoLabel"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/border"
+                android:text="@string/giaidacbiet" />
+
+            <TextView
+                style="@style/DuoisoLabel"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border"
+                android:text="@string/solanxuathien" />
+
+            <TextView
+                style="@style/DausoLabel"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/border"
+                android:text="@string/giaiLoto" />
+
+            <TextView
+                style="@style/DuoisoLabel"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border"
+                android:text="@string/solanxuathien" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:background="@drawable/border"
-            android:text="@string/giaiLoto" />
+            android:padding="0dip" >
 
-        <TextView
-            style="@style/DuoisoLabel"
-            android:layout_width="0dip"
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/border"
+                android:text="@string/giaiveit" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:background="@drawable/border"
-            android:text="@string/solanxuathien" />
-    </TableRow>
+            android:padding="0dip" >
 
-</TableLayout>
+            <TextView
+                style="@style/DausoLabel"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/border"
+                android:text="@string/giaidacbiet" />
+
+            <TextView
+                style="@style/DuoisoLabel"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border"
+                android:text="@string/solanxuathien" />
+
+            <TextView
+                style="@style/DausoLabel"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/border"
+                android:text="@string/giaiLoto" />
+
+            <TextView
+                style="@style/DuoisoLabel"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@drawable/border"
+                android:text="@string/solanxuathien" />
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>

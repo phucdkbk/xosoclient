@@ -86,6 +86,9 @@
     <string name="loadingData">Đang tải dữ liệu</string>
     <string name="ThongkeLogan">Thống kê Lô gan</string>
     <string name="ThongkeVeItnhieu">Thống kê về ít nhiều</string>
+    <string name="giaivenhieu">Các giải về nhiều</string>
+    <string name="giaiveit">Các giải về ít</string>
+    
     
 
     <!-- Other strings -->
