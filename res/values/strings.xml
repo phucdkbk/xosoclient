@@ -85,9 +85,12 @@
     <string name="cannotGetResultTitle">Không lấy được kết quả</string>
     <string name="loadingData">Đang tải dữ liệu</string>
     <string name="ThongkeLogan">Thống kê Lô gan</string>
+    <string name="ThongkeKetqua">Thống kê kết quả</string>    
     <string name="ThongkeVeItnhieu">Thống kê về ít nhiều</string>
     <string name="giaivenhieu">Các giải về nhiều</string>
     <string name="giaiveit">Các giải về ít</string>
+    <string name="giaichuave">Các giải chưa về</string>
+    
     
     
 
