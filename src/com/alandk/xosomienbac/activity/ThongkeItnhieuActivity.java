@@ -15,9 +15,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alandk.xosomienbac.R;
 import com.alandk.xosomienbac.common.LotteryUtils;
@@ -29,14 +33,21 @@ import com.google.gson.stream.JsonReader;
 public class ThongkeItnhieuActivity extends Activity {
 	private TableLayout tableThongkeItnhieu;
 
+	private Spinner spinnerDate;	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.thongke_itnhieu);
 		tableThongkeItnhieu = (TableLayout) findViewById(R.id.tableThongkeItnhieu);
+		addListenerOnSpinnerItemSelection();
+		//showResultThongkeItnhieuByDate(30);
+	}
+	
+	public void showResultThongkeItnhieuByDate(int songay){
 		if (LotteryUtils.isConnectInternet(this)) {
-			new DownloadWebpageTask(this).execute("http://floating-ravine-3291.herokuapp.com/ThongkeItNhieu?songay=30");
+			new DownloadWebpageTask(this).execute("http://floating-ravine-3291.herokuapp.com/ThongkeItNhieu?songay="+songay);
 		}
 	}
 
@@ -117,6 +128,9 @@ public class ThongkeItnhieuActivity extends Activity {
 				reader.setLenient(true);
 				List<CountItNhieu> listItNhieu = gson.fromJson(reader, new TypeToken<List<CountItNhieu>>() {
 				}.getType());
+				
+				removeCurrentResult();
+				
 				for (int i = 0; i < 10; i++) {
 					CountItNhieu countItNhieuLoto = listItNhieu.get(i);
 					CountItNhieu countItNhieuDacbiet = listItNhieu.get(i + 100);
@@ -157,7 +171,7 @@ public class ThongkeItnhieuActivity extends Activity {
 					solanchuaveLoto.setTextSize(16);
 					row.addView(loto);
 					row.addView(solanchuaveLoto);
-					tableThongkeItnhieu.addView(row, i + 2);
+					tableThongkeItnhieu.addView(row, i + 3);
 				}
 				int startResultDe = 0;
 				int startResultLo = 0;
@@ -217,7 +231,7 @@ public class ThongkeItnhieuActivity extends Activity {
 					solanchuaveLoto.setTextSize(16);
 					row.addView(loto);
 					row.addView(solanchuaveLoto);
-					tableThongkeItnhieu.addView(row, i + 14);
+					tableThongkeItnhieu.addView(row, i + 15);
 				}
 				String chuaveLo = "";
 				String chuaveDe = "";
@@ -256,7 +270,7 @@ public class ThongkeItnhieuActivity extends Activity {
 				chuaveLoTextview.setTextSize(16);
 				row.addView(chuaveDeTextview);
 				row.addView(chuaveLoTextview);
-				tableThongkeItnhieu.addView(row, 26);
+				tableThongkeItnhieu.addView(row, 27);
 
 			} catch (Exception e) {
 				Log.e("E", e.getMessage());
@@ -264,6 +278,20 @@ public class ThongkeItnhieuActivity extends Activity {
 			}
 		}
 
+		private void removeCurrentResult() {
+			if(tableThongkeItnhieu.getChildCount()>10){
+				tableThongkeItnhieu.removeViews(3, 10);
+				tableThongkeItnhieu.removeViews(5, 10);
+				tableThongkeItnhieu.removeViews(7, 1);
+			}			
+		}
+
 	}
 
+	public void addListenerOnSpinnerItemSelection() {
+		spinnerDate = (Spinner) findViewById(R.id.spinnerDateSearch);
+		spinnerDate.setOnItemSelectedListener(new CustomOnItemSelectedListener(this));
+	}
+
+	
 }

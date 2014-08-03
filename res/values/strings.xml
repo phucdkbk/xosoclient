@@ -91,6 +91,14 @@
     <string name="giaiveit">Các giải về ít</string>
     <string name="giaichuave">Các giải chưa về</string>
     
+     <string-array name="daySearch_arrays">
+        <item>30</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+        <item>365</item>        
+    </string-array>
+    
     
     
 

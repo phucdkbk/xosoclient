@@ -16,6 +16,9 @@ public final class R {
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
     }
+    public static final class array {
+        public static final int daySearch_arrays=0x7f0c0000;
+    }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -1484,14 +1487,14 @@ containing a value of this type.
     
          */
         public static final int action_next=0x7f08002c;
-        public static final int action_previous=0x7f080084;
-        public static final int action_refresh=0x7f080085;
-        public static final int action_search=0x7f080086;
-        public static final int action_statistic=0x7f080087;
+        public static final int action_refresh=0x7f080086;
+        public static final int action_search=0x7f080087;
+        public static final int action_statistic=0x7f080088;
         public static final int activity_chooser_view_content=0x7f08003a;
         public static final int always=0x7f08001e;
         public static final int beginning=0x7f080023;
         public static final int book_now=0x7f080010;
+        public static final int btnSubmit=0x7f080084;
         public static final int buyButton=0x7f08000a;
         public static final int buy_now=0x7f08000f;
         public static final int buy_with_google=0x7f08000e;
@@ -1581,6 +1584,7 @@ containing a value of this type.
         public static final int showHome=0x7f080017;
         public static final int showResultTitle=0x7f08005c;
         public static final int showTitle=0x7f080019;
+        public static final int spinnerDateSearch=0x7f080083;
         public static final int split_action_bar=0x7f080033;
         public static final int strict_sandbox=0x7f080009;
         public static final int submit_area=0x7f08004e;
@@ -1596,7 +1600,7 @@ containing a value of this type.
         public static final int tableRow8=0x7f08006f;
         public static final int tableRow9=0x7f080072;
         public static final int tableThongkeItnhieu=0x7f080082;
-        public static final int tableThongkeLogan=0x7f080083;
+        public static final int tableThongkeLogan=0x7f080085;
         public static final int terrain=0x7f080003;
         public static final int text1=0x7f08007f;
         public static final int thongkeitnhieu=0x7f080081;
@@ -1668,8 +1672,7 @@ containing a value of this type.
         public static final int thongke_logan=0x7f03001e;
     }
     public static final class menu {
-        public static final int activity_screen_slide=0x7f0c0000;
-        public static final int lottery_menu=0x7f0c0001;
+        public static final int lottery_menu=0x7f0d0000;
     }
     public static final class string {
         public static final int ThongkeKetqua=0x7f06006a;

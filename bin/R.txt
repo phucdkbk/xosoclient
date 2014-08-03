@@ -4,6 +4,7 @@ int anim abc_slide_in_bottom 0x7f040002
 int anim abc_slide_in_top 0x7f040003
 int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
+int array daySearch_arrays 0x7f0c0000
 int attr actionBarDivider 0x7f01002f
 int attr actionBarItemBackground 0x7f010030
 int attr actionBarSize 0x7f01002e
@@ -347,14 +348,14 @@ int id action_menu_divider 0x7f080028
 int id action_menu_presenter 0x7f080029
 int id action_mode_close_button 0x7f080039
 int id action_next 0x7f08002c
-int id action_previous 0x7f080084
-int id action_refresh 0x7f080085
-int id action_search 0x7f080086
-int id action_statistic 0x7f080087
+int id action_refresh 0x7f080086
+int id action_search 0x7f080087
+int id action_statistic 0x7f080088
 int id activity_chooser_view_content 0x7f08003a
 int id always 0x7f08001e
 int id beginning 0x7f080023
 int id book_now 0x7f080010
+int id btnSubmit 0x7f080084
 int id buyButton 0x7f08000a
 int id buy_now 0x7f08000f
 int id buy_with_google 0x7f08000e
@@ -444,6 +445,7 @@ int id showCustom 0x7f08001a
 int id showHome 0x7f080017
 int id showResultTitle 0x7f08005c
 int id showTitle 0x7f080019
+int id spinnerDateSearch 0x7f080083
 int id split_action_bar 0x7f080033
 int id strict_sandbox 0x7f080009
 int id submit_area 0x7f08004e
@@ -459,7 +461,7 @@ int id tableRow7 0x7f08006c
 int id tableRow8 0x7f08006f
 int id tableRow9 0x7f080072
 int id tableThongkeItnhieu 0x7f080082
-int id tableThongkeLogan 0x7f080083
+int id tableThongkeLogan 0x7f080085
 int id terrain 0x7f080003
 int id text1 0x7f08007f
 int id thongkeitnhieu 0x7f080081
@@ -503,8 +505,7 @@ int layout statistic_main 0x7f03001b
 int layout support_simple_spinner_dropdown_item 0x7f03001c
 int layout thongke_itnhieu 0x7f03001d
 int layout thongke_logan 0x7f03001e
-int menu activity_screen_slide 0x7f0c0000
-int menu lottery_menu 0x7f0c0001
+int menu lottery_menu 0x7f0d0000
 int string ThongkeKetqua 0x7f06006a
 int string ThongkeLogan 0x7f060069
 int string ThongkeVeItnhieu 0x7f06006b
