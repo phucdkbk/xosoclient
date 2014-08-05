@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -16,12 +17,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alandk.xosomienbac.R;
 import com.alandk.xosomienbac.common.LotteryUtils;
@@ -33,7 +33,10 @@ import com.google.gson.stream.JsonReader;
 public class ThongkeItnhieuActivity extends Activity {
 	private TableLayout tableThongkeItnhieu;
 
-	private Spinner spinnerDate;	
+	private Spinner spinnerDate;
+	
+	private TextView textTitleLoItnhieu;
+	private ProgressBar spinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +45,20 @@ public class ThongkeItnhieuActivity extends Activity {
 		setContentView(R.layout.thongke_itnhieu);
 		tableThongkeItnhieu = (TableLayout) findViewById(R.id.tableThongkeItnhieu);
 		addListenerOnSpinnerItemSelection();
-		//showResultThongkeItnhieuByDate(30);
+		textTitleLoItnhieu = (TextView) findViewById(R.id.displayLoItnhieuInfo);
+		spinner = (ProgressBar) findViewById(R.id.progressBarLogan);				
+		// showResultThongkeItnhieuByDate(30);
 	}
-	
-	public void showResultThongkeItnhieuByDate(int songay){
+
+	public void showResultThongkeItnhieuByDate(int songay) {
 		if (LotteryUtils.isConnectInternet(this)) {
-			new DownloadWebpageTask(this).execute("http://floating-ravine-3291.herokuapp.com/ThongkeItNhieu?songay="+songay);
+			new DownloadWebpageTask(this).execute("http://floating-ravine-3291.herokuapp.com/ThongkeItNhieu?songay=" + songay);
+			textTitleLoItnhieu.setText("");
+			spinner.setVisibility(View.VISIBLE);
+		} else {
+			textTitleLoItnhieu.setText(getResources().getString(R.string.internetConnectionWaring));
+			spinner.setVisibility(View.GONE);
+			tableThongkeItnhieu.removeViews(1, 8);
 		}
 	}
 
@@ -128,9 +139,13 @@ public class ThongkeItnhieuActivity extends Activity {
 				reader.setLenient(true);
 				List<CountItNhieu> listItNhieu = gson.fromJson(reader, new TypeToken<List<CountItNhieu>>() {
 				}.getType());
+
+				spinner.setVisibility(View.GONE);
+				//tableThongkeItnhieu.removeViewAt(0);
+				//tableThongkeItnhieu.removeViewAt(0);
 				
 				removeCurrentResult();
-				
+
 				for (int i = 0; i < 10; i++) {
 					CountItNhieu countItNhieuLoto = listItNhieu.get(i);
 					CountItNhieu countItNhieuDacbiet = listItNhieu.get(i + 100);
@@ -171,7 +186,7 @@ public class ThongkeItnhieuActivity extends Activity {
 					solanchuaveLoto.setTextSize(16);
 					row.addView(loto);
 					row.addView(solanchuaveLoto);
-					tableThongkeItnhieu.addView(row, i + 3);
+					tableThongkeItnhieu.addView(row, i + 5);
 				}
 				int startResultDe = 0;
 				int startResultLo = 0;
@@ -231,7 +246,7 @@ public class ThongkeItnhieuActivity extends Activity {
 					solanchuaveLoto.setTextSize(16);
 					row.addView(loto);
 					row.addView(solanchuaveLoto);
-					tableThongkeItnhieu.addView(row, i + 15);
+					tableThongkeItnhieu.addView(row, i + 17);
 				}
 				String chuaveLo = "";
 				String chuaveDe = "";
@@ -270,7 +285,7 @@ public class ThongkeItnhieuActivity extends Activity {
 				chuaveLoTextview.setTextSize(16);
 				row.addView(chuaveDeTextview);
 				row.addView(chuaveLoTextview);
-				tableThongkeItnhieu.addView(row, 27);
+				tableThongkeItnhieu.addView(row, 29);
 
 			} catch (Exception e) {
 				Log.e("E", e.getMessage());
@@ -279,11 +294,11 @@ public class ThongkeItnhieuActivity extends Activity {
 		}
 
 		private void removeCurrentResult() {
-			if(tableThongkeItnhieu.getChildCount()>10){
-				tableThongkeItnhieu.removeViews(3, 10);
-				tableThongkeItnhieu.removeViews(5, 10);
-				tableThongkeItnhieu.removeViews(7, 1);
-			}			
+			if (tableThongkeItnhieu.getChildCount() > 10) {
+				tableThongkeItnhieu.removeViews(6, 10);
+				tableThongkeItnhieu.removeViews(7, 10);
+				tableThongkeItnhieu.removeViews(9, 1);
+			}
 		}
 
 	}
@@ -293,5 +308,4 @@ public class ThongkeItnhieuActivity extends Activity {
 		spinnerDate.setOnItemSelectedListener(new CustomOnItemSelectedListener(this));
 	}
 
-	
 }

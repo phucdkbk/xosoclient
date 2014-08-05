@@ -15,6 +15,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -29,14 +31,27 @@ import com.google.gson.stream.JsonReader;
 public class ThongkeLoganActivity extends Activity {
 	private TableLayout tableLogan;
 
+	private TextView textTitleLogan;
+	private ProgressBar spinner;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.thongke_logan);
 		tableLogan = (TableLayout) findViewById(R.id.tableThongkeLogan);
+		textTitleLogan = (TextView) findViewById(R.id.displayLoganInfo);
+		spinner = (ProgressBar) findViewById(R.id.progressBarLogan);
 		if (LotteryUtils.isConnectInternet(this)) {
+			textTitleLogan.setText("");
+			spinner.setVisibility(View.VISIBLE);
+			tableLogan.removeViewAt(1);
 			new DownloadWebpageTask(this).execute("http://floating-ravine-3291.herokuapp.com/ThongkeLogan");
+		} else {
+			textTitleLogan.setText(getResources().getString(R.string.internetConnectionWaring));
+			spinner.setVisibility(View.GONE);
+			tableLogan.removeViewAt(0);
+			tableLogan.removeViewAt(1);
 		}
 	}
 
@@ -51,7 +66,7 @@ public class ThongkeLoganActivity extends Activity {
 		InputStream is = null;
 		// Only display the first 500 characters of the retrieved
 		// web page content.
-		//int len = 5000;
+		// int len = 5000;
 
 		try {
 			URL url = new URL(myurl);
@@ -89,7 +104,7 @@ public class ThongkeLoganActivity extends Activity {
 		char[] buffer = new char[len];
 		reader.read(buffer);
 		return new String(buffer);
-	}	
+	}
 
 	private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
 		private Context mContext;
@@ -117,6 +132,7 @@ public class ThongkeLoganActivity extends Activity {
 				// result = result.trim();
 				// result = result.substring(0, result.lastIndexOf("]"));
 				// List<CountLoGan> listLoGan = new ArrayList<CountLoGan>();
+				spinner.setVisibility(View.GONE);
 
 				Gson gson = new Gson();
 				JsonReader reader = new JsonReader(new StringReader(result));
@@ -126,7 +142,9 @@ public class ThongkeLoganActivity extends Activity {
 				for (int i = 0; i < 15; i++) {
 					CountLoGan countLogan = listLoGan.get(i);
 					TableRow row = new TableRow(mContext);
-					//TableRow.LayoutParams lpRow = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2);
+					// TableRow.LayoutParams lpRow = new
+					// TableRow.LayoutParams(0,
+					// TableRow.LayoutParams.WRAP_CONTENT, 2);
 					TableRow.LayoutParams lpRow = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 					row.setLayoutParams(lpRow);
 					TextView loto = new TextView(mContext);
@@ -145,7 +163,7 @@ public class ThongkeLoganActivity extends Activity {
 					solanchuave.setTextSize(20);
 					row.addView(loto);
 					row.addView(solanchuave);
-					tableLogan.addView(row, i + 1);
+					tableLogan.addView(row, i + 2);
 				}
 			} catch (Exception e) {
 				Log.e("E", e.getMessage());

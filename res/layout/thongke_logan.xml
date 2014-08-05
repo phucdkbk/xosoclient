@@ -8,6 +8,36 @@
     android:stretchColumns="1" >
 
     <TableRow
+        android:id="@+id/rowLoadingDataLogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="0dip" >
+
+        <ProgressBar
+            android:id="@+id/progressBarLogan"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/rowDisplayInfoLogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="0dip" >
+
+        <TextView
+            android:id="@+id/displayLoganInfo"
+            style="@style/DausoLabel"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"            
+            android:text="@string/lotogan" />
+    </TableRow>
+
+    <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="0dip" >

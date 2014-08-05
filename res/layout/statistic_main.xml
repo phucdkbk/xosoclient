@@ -8,14 +8,18 @@
         android:id="@+id/thongkelogan"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/thongkelogan"
+        android:textColor="@color/select_text"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/thongkeitnhieu"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/thongkeitnhieu"
+        android:textColor="@color/select_text"
         android:textSize="20sp" />
 
 </LinearLayout>

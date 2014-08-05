@@ -17,6 +17,7 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040005;
     }
     public static final class array {
+        public static final int country_arrays=0x7f0c0001;
         public static final int daySearch_arrays=0x7f0c0000;
     }
     public static final class attr {
@@ -1195,6 +1196,7 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_pressed=0x7f070005;
         public static final int common_signin_btn_text_dark=0x7f07001b;
         public static final int common_signin_btn_text_light=0x7f07001c;
+        public static final int select_text=0x7f07001d;
         public static final int wallet_bright_foreground_disabled_holo_light=0x7f07000f;
         /** 
          Wallet colors to support consistent Wallet fragment holo dark UI in client application
@@ -1213,8 +1215,8 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f070011;
         public static final int wallet_holo_blue_light=0x7f070015;
         public static final int wallet_link_text_light=0x7f070016;
-        public static final int wallet_primary_text_holo_light=0x7f07001d;
-        public static final int wallet_secondary_text_holo_dark=0x7f07001e;
+        public static final int wallet_primary_text_holo_light=0x7f07001e;
+        public static final int wallet_secondary_text_holo_dark=0x7f07001f;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1457,13 +1459,9 @@ containing a value of this type.
         public static final int ic_plusone_small_off_client=0x7f020078;
         public static final int ic_plusone_standard_off_client=0x7f020079;
         public static final int ic_plusone_tall_off_client=0x7f02007a;
-        public static final int loading=0x7f02007b;
-        public static final int next=0x7f02007c;
-        public static final int powered_by_google_dark=0x7f02007d;
-        public static final int powered_by_google_light=0x7f02007e;
-        public static final int prev=0x7f02007f;
-        public static final int toolbar_find=0x7f020080;
-        public static final int xsmb=0x7f020081;
+        public static final int powered_by_google_dark=0x7f02007b;
+        public static final int powered_by_google_light=0x7f02007c;
+        public static final int xsmb=0x7f02007d;
     }
     public static final class id {
         public static final int action_bar=0x7f080031;
@@ -1487,14 +1485,14 @@ containing a value of this type.
     
          */
         public static final int action_next=0x7f08002c;
-        public static final int action_refresh=0x7f080086;
-        public static final int action_search=0x7f080087;
-        public static final int action_statistic=0x7f080088;
+        public static final int action_previous=0x7f08008c;
+        public static final int action_refresh=0x7f08008d;
+        public static final int action_search=0x7f08008e;
+        public static final int action_statistic=0x7f08008f;
         public static final int activity_chooser_view_content=0x7f08003a;
         public static final int always=0x7f08001e;
         public static final int beginning=0x7f080023;
         public static final int book_now=0x7f080010;
-        public static final int btnSubmit=0x7f080084;
         public static final int buyButton=0x7f08000a;
         public static final int buy_now=0x7f08000f;
         public static final int buy_with_google=0x7f08000e;
@@ -1516,6 +1514,8 @@ containing a value of this type.
         public static final int default_activity_button=0x7f08003d;
         public static final int dialog=0x7f080021;
         public static final int disableHome=0x7f08001b;
+        public static final int displayLoItnhieuInfo=0x7f080084;
+        public static final int displayLoganInfo=0x7f08008b;
         public static final int dropdown=0x7f080022;
         public static final int edit_query=0x7f080045;
         public static final int end=0x7f080025;
@@ -1561,11 +1561,16 @@ containing a value of this type.
         public static final int previousDate=0x7f080056;
         public static final int production=0x7f080007;
         public static final int progressBar=0x7f08005a;
+        public static final int progressBarLogan=0x7f080087;
         public static final int progress_circular=0x7f08002a;
         public static final int progress_horizontal=0x7f08002b;
         public static final int radio=0x7f080044;
         public static final int rowDateResult=0x7f08005b;
+        public static final int rowDisplayInfoLoItnhieu=0x7f080083;
+        public static final int rowDisplayInfoLogan=0x7f08008a;
         public static final int rowLoadingData=0x7f080059;
+        public static final int rowLoadingDataLoItnhieu=0x7f080086;
+        public static final int rowLoadingDataLogan=0x7f080089;
         public static final int sandbox=0x7f080008;
         public static final int satellite=0x7f080002;
         public static final int search_badge=0x7f080047;
@@ -1584,7 +1589,7 @@ containing a value of this type.
         public static final int showHome=0x7f080017;
         public static final int showResultTitle=0x7f08005c;
         public static final int showTitle=0x7f080019;
-        public static final int spinnerDateSearch=0x7f080083;
+        public static final int spinnerDateSearch=0x7f080085;
         public static final int split_action_bar=0x7f080033;
         public static final int strict_sandbox=0x7f080009;
         public static final int submit_area=0x7f08004e;
@@ -1600,7 +1605,7 @@ containing a value of this type.
         public static final int tableRow8=0x7f08006f;
         public static final int tableRow9=0x7f080072;
         public static final int tableThongkeItnhieu=0x7f080082;
-        public static final int tableThongkeLogan=0x7f080085;
+        public static final int tableThongkeLogan=0x7f080088;
         public static final int terrain=0x7f080003;
         public static final int text1=0x7f08007f;
         public static final int thongkeitnhieu=0x7f080081;
@@ -1672,7 +1677,8 @@ containing a value of this type.
         public static final int thongke_logan=0x7f03001e;
     }
     public static final class menu {
-        public static final int lottery_menu=0x7f0d0000;
+        public static final int activity_screen_slide=0x7f0d0000;
+        public static final int lottery_menu=0x7f0d0001;
     }
     public static final class string {
         public static final int ThongkeKetqua=0x7f06006a;
@@ -1738,8 +1744,8 @@ containing a value of this type.
         public static final int auth_client_requested_by_msg=0x7f060005;
         public static final int auth_client_using_bad_version_title=0x7f060000;
         public static final int cannotGetResultTitle=0x7f060067;
-        public static final int card_back_description=0x7f060072;
-        public static final int card_back_title=0x7f060071;
+        public static final int card_back_description=0x7f060074;
+        public static final int card_back_title=0x7f060073;
         public static final int chunhat=0x7f06005a;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -1863,10 +1869,11 @@ containing a value of this type.
         public static final int giaivenhieu=0x7f06006c;
         /**  Other strings 
          */
-        public static final int hello=0x7f06006f;
+        public static final int hello=0x7f060071;
+        public static final int internetConnectionWaring=0x7f060070;
         public static final int lastNumber=0x7f060049;
         public static final int loadingData=0x7f060068;
-        public static final int lorem_ipsum=0x7f060073;
+        public static final int lorem_ipsum=0x7f060075;
         public static final int lotogan=0x7f060060;
         public static final int newResult=0x7f060065;
         public static final int refresh=0x7f06005c;
@@ -1874,9 +1881,10 @@ containing a value of this type.
         public static final int resultTitle=0x7f060066;
         public static final int search=0x7f06005b;
         public static final int solanchuara=0x7f060061;
+        public static final int solanquay=0x7f06006f;
         public static final int solanxuathien=0x7f060064;
         public static final int statistic=0x7f06005d;
-        public static final int statisticResult=0x7f060070;
+        public static final int statisticResult=0x7f060072;
         public static final int thongkeitnhieu=0x7f06005f;
         public static final int thongkelogan=0x7f06005e;
         public static final int thu2=0x7f060054;

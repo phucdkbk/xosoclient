@@ -108,7 +108,7 @@ public class ScreenSlidePageFragment extends Fragment {
 		initDiplayResult(rootView);
 		int dateInt = getDefaultDisplayDate();		
 		textTitleView = (TextView) rootView.findViewById(R.id.showResultTitle);
-		spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);		
+		spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);	
 		if (LotteryUtils.isConnectInternet(mContext)) {
 			// Set loading information
 			textTitleView.setText("");
