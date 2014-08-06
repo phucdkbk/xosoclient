@@ -22,7 +22,7 @@
     <!-- Dummy content. -->
 
     <TableLayout
-        android:id="@+id/tableLayout1"
+        android:id="@+id/tableLayoutKetqua"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"

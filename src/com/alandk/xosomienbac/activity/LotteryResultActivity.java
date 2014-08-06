@@ -197,10 +197,9 @@ public class LotteryResultActivity extends FragmentActivity {
 			newFragment.show(getFragmentManager(), "datePicker");
 			return true;
 		case R.id.action_statistic:
-			Intent intent = new Intent(this, StatisticActivity.class);		    
-		    String message = "Hello";
-		    intent.putExtra("extraMessage", message);
-		    startActivity(intent);
+			Intent intent = new Intent(this, StatisticActivity.class);		    		    
+		    //startActivity(intent);
+		    startActivityForResult(intent, 0);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

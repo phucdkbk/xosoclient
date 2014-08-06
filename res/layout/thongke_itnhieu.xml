@@ -10,7 +10,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:stretchColumns="1" >
-        
+
         <TableRow
             android:id="@+id/rowDisplayInfoLoItnhieu"
             android:layout_width="wrap_content"
@@ -24,8 +24,7 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="2" />
-        </TableRow>        
-        
+        </TableRow>
 
         <TableRow
             android:layout_width="wrap_content"
@@ -46,7 +45,7 @@
                 android:entries="@array/daySearch_arrays"
                 android:prompt="@string/solanquay" />
         </TableRow>
-        
+
         <TableRow
             android:id="@+id/rowLoadingDataLoItnhieu"
             android:layout_width="wrap_content"
@@ -73,6 +72,7 @@
                 android:background="@drawable/border"
                 android:gravity="center"
                 android:text="@string/giaivenhieu"
+                android:textColor="@color/titleThongketItnieu"
                 android:textSize="18sp" />
         </TableRow>
 
@@ -126,6 +126,7 @@
                 android:background="@drawable/border"
                 android:gravity="center"
                 android:text="@string/giaiveit"
+                android:textColor="@color/titleThongketItnieu"
                 android:textSize="18sp" />
         </TableRow>
 
@@ -179,6 +180,7 @@
                 android:background="@drawable/border"
                 android:gravity="center"
                 android:text="@string/giaichuave"
+                android:textColor="@color/titleThongketItnieu"
                 android:textSize="18sp" />
         </TableRow>
 
