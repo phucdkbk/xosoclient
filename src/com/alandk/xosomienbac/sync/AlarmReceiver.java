@@ -54,7 +54,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 		mBuilder.setContentTitle(context.getResources().getString(R.string.newResult) + " " + df.format(new Date()) + ":");
 		mBuilder.setContentText(displayText);
 		mBuilder.setTicker(context.getResources().getString(R.string.newResult));
-		mBuilder.setSmallIcon(R.drawable.xsmb);
+		mBuilder.setSmallIcon(R.drawable.newresult);
 
 		// Increase notification number every time a new notification arrives
 		mBuilder.setNumber(++numMessagesOne);
@@ -137,7 +137,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 					Gson gson = new Gson();
 					if (newResult != null && !newResult.isEmpty()) {
 						lotteryDataSource.createOrUpdateLotteryDBResult(date, gson.toJson(currentResult));
-						displayNotificationNewResult(context, newResult);
+						if (onResultTime()) {
+							displayNotificationNewResult(context, newResult);
+						}
 					}
 				}
 			} catch (Exception e) {
@@ -204,6 +206,16 @@ public class AlarmReceiver extends BroadcastReceiver {
 		}
 
 		return differentResult;
+	}
+
+	public boolean onResultTime() {
+		Calendar cal = Calendar.getInstance();
+		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY);
+		if (hourOfDay == 18) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private String getDifferentNumber(String[] fromArrNums, String[] toArrNums) {
