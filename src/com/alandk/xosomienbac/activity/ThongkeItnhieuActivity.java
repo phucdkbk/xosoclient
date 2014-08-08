@@ -54,9 +54,9 @@ public class ThongkeItnhieuActivity extends Activity {
 
 	public void showResultThongkeItnhieuByDate(int songay) {
 		if (LotteryUtils.isConnectInternet(this)) {
-			new DownloadWebpageTask(this).execute("http://floating-ravine-3291.herokuapp.com/ThongkeItNhieu?songay=" + songay);
 			textTitleLoItnhieu.setText("");
 			spinner.setVisibility(View.VISIBLE);
+			new DownloadWebpageTask(this).execute("http://floating-ravine-3291.herokuapp.com/ThongkeItNhieu?songay=" + songay);			
 		} else {
 			textTitleLoItnhieu.setText(getResources().getString(R.string.internetConnectionWaring));
 			spinner.setVisibility(View.GONE);

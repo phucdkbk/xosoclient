@@ -24,8 +24,12 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.alandk.xosomienbac.R;
+import com.alandk.xosomienbac.common.Constants;
 import com.alandk.xosomienbac.common.LotteryUtils;
 import com.alandk.xosomienbac.thongke.CountLoGan;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -35,6 +39,7 @@ public class ThongkeLoganActivity extends Activity {
 
 	private TextView textTitleLogan;
 	private ProgressBar spinner;
+	private AdView adView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +50,33 @@ public class ThongkeLoganActivity extends Activity {
 		textTitleLogan = (TextView) findViewById(R.id.displayLoganInfo);
 		spinner = (ProgressBar) findViewById(R.id.progressBarLogan);
 		if (LotteryUtils.isConnectInternet(this)) {
+			insertAds();
 			textTitleLogan.setText("");
 			spinner.setVisibility(View.VISIBLE);
-			tableLogan.removeViewAt(1);
+			tableLogan.removeViewAt(2);
 			new DownloadWebpageTask(this).execute("http://floating-ravine-3291.herokuapp.com/ThongkeLogan");
 		} else {
 			textTitleLogan.setText(getResources().getString(R.string.internetConnectionWaring));
 			spinner.setVisibility(View.GONE);
 			tableLogan.removeViewAt(0);
 			tableLogan.removeViewAt(1);
+		}
+	}
+	
+	private void insertAds() {
+		if (LotteryUtils.isConnectInternet(this)) {
+			// Create an ad.
+			adView = new AdView(this);
+			adView.setAdSize(AdSize.SMART_BANNER);
+			adView.setAdUnitId(Constants.AD_UNIT_ID);
+			TableRow layout = (TableRow) findViewById(R.id.rowAdvertising);
+			layout.addView(adView, 0);
+//			AdRequest adRequest = new AdRequest.Builder().setGender(AdRequest.GENDER_MALE)
+//					.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+//					.addTestDevice("EF46L01111101079272").build();			
+			AdRequest adRequest = LotteryUtils.getAdRequest();
+			// Start loading the ad in the background.
+			adView.loadAd(adRequest);
 		}
 	}
 
@@ -69,7 +92,6 @@ public class ThongkeLoganActivity extends Activity {
 		// Only display the first 500 characters of the retrieved
 		// web page content.
 		// int len = 5000;
-
 		try {
 			URL url = new URL(myurl);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -130,12 +152,7 @@ public class ThongkeLoganActivity extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			try {
-				// result = result + "]";
-				// result = result.trim();
-				// result = result.substring(0, result.lastIndexOf("]"));
-				// List<CountLoGan> listLoGan = new ArrayList<CountLoGan>();
 				spinner.setVisibility(View.GONE);
-
 				Gson gson = new Gson();
 				JsonReader reader = new JsonReader(new StringReader(result));
 				reader.setLenient(true);
@@ -144,9 +161,6 @@ public class ThongkeLoganActivity extends Activity {
 				for (int i = 0; i < 15; i++) {
 					CountLoGan countLogan = listLoGan.get(i);
 					TableRow row = new TableRow(mContext);
-					// TableRow.LayoutParams lpRow = new
-					// TableRow.LayoutParams(0,
-					// TableRow.LayoutParams.WRAP_CONTENT, 2);
 					TableRow.LayoutParams lpRow = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 					row.setLayoutParams(lpRow);
 					TextView loto = new TextView(mContext);
@@ -165,7 +179,7 @@ public class ThongkeLoganActivity extends Activity {
 					solanchuave.setTextSize(20);
 					row.addView(loto);
 					row.addView(solanchuave);
-					tableLogan.addView(row, i + 2);
+					tableLogan.addView(row, i + 3);
 				}
 			} catch (Exception e) {
 				Log.e("E", e.getMessage());

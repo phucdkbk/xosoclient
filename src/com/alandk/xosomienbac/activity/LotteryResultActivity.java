@@ -40,7 +40,7 @@ public class LotteryResultActivity extends FragmentActivity {
 	private AdView adView;
 
 	/* Your ad unit id. Replace with your actual ad unit id. */
-	private static final String AD_UNIT_ID = "ca-app-pub-1954954439370083/7603841453";
+	
 
 	public LotteryResultActivity() {
 		// TODO Auto-generated constructor stub
@@ -129,13 +129,13 @@ public class LotteryResultActivity extends FragmentActivity {
 			// Create an ad.
 			adView = new AdView(this);
 			adView.setAdSize(AdSize.SMART_BANNER);
-			adView.setAdUnitId(AD_UNIT_ID);
+			adView.setAdUnitId(Constants.AD_UNIT_ID);
 			LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
 			layout.addView(adView, 0);
 //			AdRequest adRequest = new AdRequest.Builder().setGender(AdRequest.GENDER_MALE)
 //					.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
 //					.addTestDevice("EF46L01111101079272").build();			
-			AdRequest adRequest = new AdRequest.Builder().build();
+			AdRequest adRequest = LotteryUtils.getAdRequest();
 			// Start loading the ad in the background.
 			adView.loadAd(adRequest);
 		}

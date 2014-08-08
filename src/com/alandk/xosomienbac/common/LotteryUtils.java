@@ -3,6 +3,7 @@ package com.alandk.xosomienbac.common;
 import java.util.Scanner;
 
 import com.alandk.xosomienbac.sync.AlarmReceiver;
+import com.google.android.gms.ads.AdRequest;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -31,6 +32,11 @@ public class LotteryUtils {
 		int interval = Constants.REFRESH_INTERVAL;
 		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
 		// Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();
+	}
+	
+	public static AdRequest getAdRequest() {
+		AdRequest adRequest = new AdRequest.Builder().build();
+		return adRequest;
 	}
 
 }

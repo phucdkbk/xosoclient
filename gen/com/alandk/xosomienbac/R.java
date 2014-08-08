@@ -1490,11 +1490,11 @@ containing a value of this type.
     
          */
         public static final int action_next=0x7f08002c;
-        public static final int action_previous=0x7f08008c;
-        public static final int action_refresh=0x7f08008d;
-        public static final int action_search=0x7f08008e;
-        public static final int action_statistic=0x7f08008f;
-        public static final int action_undo=0x7f080090;
+        public static final int action_previous=0x7f08008e;
+        public static final int action_refresh=0x7f08008f;
+        public static final int action_search=0x7f080090;
+        public static final int action_statistic=0x7f080091;
+        public static final int action_undo=0x7f080092;
         public static final int activity_chooser_view_content=0x7f08003a;
         public static final int always=0x7f08001e;
         public static final int beginning=0x7f080023;
@@ -1520,8 +1520,8 @@ containing a value of this type.
         public static final int default_activity_button=0x7f08003d;
         public static final int dialog=0x7f080021;
         public static final int disableHome=0x7f08001b;
-        public static final int displayLoItnhieuInfo=0x7f080084;
-        public static final int displayLoganInfo=0x7f08008b;
+        public static final int displayLoItnhieuInfo=0x7f080085;
+        public static final int displayLoganInfo=0x7f08008d;
         public static final int dropdown=0x7f080022;
         public static final int edit_query=0x7f080045;
         public static final int end=0x7f080025;
@@ -1553,6 +1553,7 @@ containing a value of this type.
         public static final int ifRoom=0x7f08001d;
         public static final int image=0x7f08003c;
         public static final int linearLayout=0x7f080051;
+        public static final int linearLayoutThongke=0x7f080080;
         public static final int listMode=0x7f080014;
         public static final int list_item=0x7f08003e;
         public static final int lotteryContent=0x7f08002e;
@@ -1567,16 +1568,17 @@ containing a value of this type.
         public static final int previousDate=0x7f080056;
         public static final int production=0x7f080007;
         public static final int progressBar=0x7f08005a;
-        public static final int progressBarLogan=0x7f080087;
+        public static final int progressBarLogan=0x7f080088;
         public static final int progress_circular=0x7f08002a;
         public static final int progress_horizontal=0x7f08002b;
         public static final int radio=0x7f080044;
+        public static final int rowAdvertising=0x7f08008a;
         public static final int rowDateResult=0x7f08005b;
-        public static final int rowDisplayInfoLoItnhieu=0x7f080083;
-        public static final int rowDisplayInfoLogan=0x7f08008a;
+        public static final int rowDisplayInfoLoItnhieu=0x7f080084;
+        public static final int rowDisplayInfoLogan=0x7f08008c;
         public static final int rowLoadingData=0x7f080059;
-        public static final int rowLoadingDataLoItnhieu=0x7f080086;
-        public static final int rowLoadingDataLogan=0x7f080089;
+        public static final int rowLoadingDataLoItnhieu=0x7f080087;
+        public static final int rowLoadingDataLogan=0x7f08008b;
         public static final int sandbox=0x7f080008;
         public static final int satellite=0x7f080002;
         public static final int search_badge=0x7f080047;
@@ -1595,7 +1597,7 @@ containing a value of this type.
         public static final int showHome=0x7f080017;
         public static final int showResultTitle=0x7f08005c;
         public static final int showTitle=0x7f080019;
-        public static final int spinnerDateSearch=0x7f080085;
+        public static final int spinnerDateSearch=0x7f080086;
         public static final int split_action_bar=0x7f080033;
         public static final int strict_sandbox=0x7f080009;
         public static final int submit_area=0x7f08004e;
@@ -1610,12 +1612,12 @@ containing a value of this type.
         public static final int tableRow7=0x7f08006c;
         public static final int tableRow8=0x7f08006f;
         public static final int tableRow9=0x7f080072;
-        public static final int tableThongkeItnhieu=0x7f080082;
-        public static final int tableThongkeLogan=0x7f080088;
+        public static final int tableThongkeItnhieu=0x7f080083;
+        public static final int tableThongkeLogan=0x7f080089;
         public static final int terrain=0x7f080003;
         public static final int text1=0x7f08007f;
-        public static final int thongkeitnhieu=0x7f080081;
-        public static final int thongkelogan=0x7f080080;
+        public static final int thongkeitnhieu=0x7f080082;
+        public static final int thongkelogan=0x7f080081;
         public static final int title=0x7f080040;
         public static final int top_action_bar=0x7f080035;
         public static final int up=0x7f080036;
