@@ -195,7 +195,7 @@ public class ThongkeItnhieuActivity extends Activity {
 				for (int i = 0; i < 100; i++) {
 					CountItNhieu countItNhieuLoto = listItNhieu.get(99 - i);
 					if (countItNhieuLoto.getCount() != 0) {
-						startResultLo = 99 - i - 10;
+						startResultLo = 99 - i - 9;
 						break;
 					}
 				}
@@ -203,7 +203,7 @@ public class ThongkeItnhieuActivity extends Activity {
 				for (int i = 0; i < 100; i++) {
 					CountItNhieu countItNhieuDe = listItNhieu.get(199 - i);
 					if (countItNhieuDe.getCount() != 0) {
-						startResultDe = 199 - i - 10;
+						startResultDe = 199 - i - 9;
 						break;
 					}
 				}
@@ -297,7 +297,7 @@ public class ThongkeItnhieuActivity extends Activity {
 
 		private void removeCurrentResult() {
 			if (tableThongkeItnhieu.getChildCount() > 10) {
-				tableThongkeItnhieu.removeViews(6, 10);
+				tableThongkeItnhieu.removeViews(5, 10);
 				tableThongkeItnhieu.removeViews(7, 10);
 				tableThongkeItnhieu.removeViews(9, 1);
 			}

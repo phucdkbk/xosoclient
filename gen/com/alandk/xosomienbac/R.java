@@ -1490,11 +1490,10 @@ containing a value of this type.
     
          */
         public static final int action_next=0x7f08002c;
-        public static final int action_previous=0x7f08008e;
-        public static final int action_refresh=0x7f08008f;
-        public static final int action_search=0x7f080090;
-        public static final int action_statistic=0x7f080091;
-        public static final int action_undo=0x7f080092;
+        public static final int action_refresh=0x7f08008e;
+        public static final int action_search=0x7f08008f;
+        public static final int action_statistic=0x7f080090;
+        public static final int action_undo=0x7f080091;
         public static final int activity_chooser_view_content=0x7f08003a;
         public static final int always=0x7f08001e;
         public static final int beginning=0x7f080023;
@@ -1685,9 +1684,8 @@ containing a value of this type.
         public static final int thongke_logan=0x7f03001e;
     }
     public static final class menu {
-        public static final int activity_screen_slide=0x7f0d0000;
-        public static final int lottery_menu=0x7f0d0001;
-        public static final int lottery_menu_statistic=0x7f0d0002;
+        public static final int lottery_menu=0x7f0d0000;
+        public static final int lottery_menu_statistic=0x7f0d0001;
     }
     public static final class string {
         public static final int ThongkeKetqua=0x7f06006b;
