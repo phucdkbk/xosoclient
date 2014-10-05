@@ -59,6 +59,7 @@ public class ThongkeLoganActivity extends Activity {
 			textTitleLogan.setText(getResources().getString(R.string.internetConnectionWaring));
 			spinner.setVisibility(View.GONE);
 			tableLogan.removeViewAt(0);
+			tableLogan.removeViewAt(0);
 			tableLogan.removeViewAt(1);
 		}
 	}

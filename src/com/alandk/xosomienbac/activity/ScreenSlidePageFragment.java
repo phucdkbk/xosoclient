@@ -98,7 +98,7 @@ public class ScreenSlidePageFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mPageNumber = getArguments().getInt(ARG_PAGE);
+		mPageNumber = getArguments().getInt(ARG_PAGE);		
 	}
 
 	@Override
@@ -109,7 +109,7 @@ public class ScreenSlidePageFragment extends Fragment {
 		int dateInt = getDefaultDisplayDate();		
 		textTitleView = (TextView) rootView.findViewById(R.id.showResultTitle);
 		spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);	
-		if (LotteryUtils.isConnectInternet(mContext)) {
+		if (LotteryUtils.isConnectInternet(getActivity())) {
 			// Set loading information
 			textTitleView.setText("");
 			spinner.setVisibility(View.VISIBLE);
