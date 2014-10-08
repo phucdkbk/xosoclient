@@ -147,6 +147,9 @@ public class ThongkeItnhieuActivity extends Activity {
 				//tableThongkeItnhieu.removeViewAt(0);
 				
 				removeCurrentResult();
+				if(mContext==null){
+					mContext = getApplicationContext();
+				}
 
 				for (int i = 0; i < 10; i++) {
 					CountItNhieu countItNhieuLoto = listItNhieu.get(i);
