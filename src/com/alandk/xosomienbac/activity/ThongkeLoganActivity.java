@@ -72,9 +72,6 @@ public class ThongkeLoganActivity extends Activity {
 			adView.setAdUnitId(Constants.AD_UNIT_ID);
 			TableRow layout = (TableRow) findViewById(R.id.rowAdvertising);
 			layout.addView(adView, 0);
-//			AdRequest adRequest = new AdRequest.Builder().setGender(AdRequest.GENDER_MALE)
-//					.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-//					.addTestDevice("EF46L01111101079272").build();			
 			AdRequest adRequest = LotteryUtils.getAdRequest();
 			// Start loading the ad in the background.
 			adView.loadAd(adRequest);

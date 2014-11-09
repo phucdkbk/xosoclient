@@ -10,5 +10,5 @@ public interface Constants {
 
 	// public static final String AD_UNIT_ID =
 	// "ca-app-pub-1954954439370083/7603841453";
-	public static final String AD_UNIT_ID = "ca-app-pub-5954366571100378/1411596445";
+	public static final String AD_UNIT_ID = "ca-app-pub-3234178755302460/4967822839";	
 }

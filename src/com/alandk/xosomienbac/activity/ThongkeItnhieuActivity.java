@@ -26,8 +26,12 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.alandk.xosomienbac.R;
+import com.alandk.xosomienbac.common.Constants;
 import com.alandk.xosomienbac.common.LotteryUtils;
 import com.alandk.xosomienbac.thongke.CountItNhieu;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -39,6 +43,7 @@ public class ThongkeItnhieuActivity extends Activity {
 	
 	private TextView textTitleLoItnhieu;
 	private ProgressBar spinner;
+	private AdView adView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +53,15 @@ public class ThongkeItnhieuActivity extends Activity {
 		tableThongkeItnhieu = (TableLayout) findViewById(R.id.tableThongkeItnhieu);
 		addListenerOnSpinnerItemSelection();
 		textTitleLoItnhieu = (TextView) findViewById(R.id.displayLoItnhieuInfo);
-		spinner = (ProgressBar) findViewById(R.id.progressBarLogan);				
+		spinner = (ProgressBar) findViewById(R.id.progressBarLoItnhieu);	
+		if (LotteryUtils.isConnectInternet(this)) {
+			//insertAds();
+		}
 		// showResultThongkeItnhieuByDate(30);
 	}
 
 	public void showResultThongkeItnhieuByDate(int songay) {
-		if (LotteryUtils.isConnectInternet(this)) {
+		if (LotteryUtils.isConnectInternet(this)) {			
 			textTitleLoItnhieu.setText("");
 			spinner.setVisibility(View.VISIBLE);
 			new DownloadWebpageTask(this).execute("http://floating-ravine-3291.herokuapp.com/ThongkeItNhieu?songay=" + songay);			
@@ -63,6 +71,21 @@ public class ThongkeItnhieuActivity extends Activity {
 			tableThongkeItnhieu.removeViews(1, 8);
 		}
 	}
+	
+	
+//	private void insertAds() {
+//		if (LotteryUtils.isConnectInternet(this)) {
+//			// Create an ad.
+//			adView = new AdView(this);
+//			adView.setAdSize(AdSize.SMART_BANNER);
+//			adView.setAdUnitId(Constants.AD_UNIT_ID);
+//			TableRow layout = (TableRow) findViewById(R.id.rowAdvertisingLoItNhieu);
+//			layout.addView(adView, 0);
+//			AdRequest adRequest = LotteryUtils.getAdRequest();
+//			// Start loading the ad in the background.
+//			adView.loadAd(adRequest);
+//		}
+//	}
 
 	/**
 	 * download given url, return string content

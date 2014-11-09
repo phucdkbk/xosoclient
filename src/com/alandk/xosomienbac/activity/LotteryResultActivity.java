@@ -16,9 +16,9 @@ import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -40,7 +40,6 @@ public class LotteryResultActivity extends FragmentActivity {
 	private AdView adView;
 
 	/* Your ad unit id. Replace with your actual ad unit id. */
-	
 
 	public LotteryResultActivity() {
 		// TODO Auto-generated constructor stub
@@ -76,17 +75,17 @@ public class LotteryResultActivity extends FragmentActivity {
 	/**
 	 * The pager adapter, which provides the pages to the view pager widget.
 	 */
-	private PagerAdapter mPagerAdapter;	
+	private PagerAdapter mPagerAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);		
 		removeNotification();
 		setContentView(R.layout.activity_screen_slide);
 		insertAds();
 		lotteryDataSource = new LotteryDataSource(this);
 		lotteryDataSource.open();
-		LotteryUtils.setResultNotification(this); 
+		LotteryUtils.setResultNotification(this);		
 		setSlilePagerAdapter();
 		mPager.setCurrentItem(com.alandk.xosomienbac.common.Constants.NUM_PAGES / 2, true);
 	}
@@ -132,9 +131,10 @@ public class LotteryResultActivity extends FragmentActivity {
 			adView.setAdUnitId(Constants.AD_UNIT_ID);
 			LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout);
 			layout.addView(adView, 0);
-//			AdRequest adRequest = new AdRequest.Builder().setGender(AdRequest.GENDER_MALE)
-//					.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-//					.addTestDevice("EF46L01111101079272").build();			
+			// AdRequest adRequest = new
+			// AdRequest.Builder().setGender(AdRequest.GENDER_MALE)
+			// .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+			// .addTestDevice("EF46L01111101079272").build();
 			AdRequest adRequest = LotteryUtils.getAdRequest();
 			// Start loading the ad in the background.
 			adView.loadAd(adRequest);
@@ -165,10 +165,10 @@ public class LotteryResultActivity extends FragmentActivity {
 	public static void createLotteryDBResult(int date, String result) {
 		lotteryDataSource.createLotteryResult(date, result);
 	}
-	
+
 	public static void createOrUpdateLotteryDBResult(int date, String result) {
 		lotteryDataSource.createOrUpdateLotteryDBResult(date, result);
-	}	
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -179,36 +179,36 @@ public class LotteryResultActivity extends FragmentActivity {
 		// // setCurrentItem will do nothing.
 		// mPager.setCurrentItem(mPager.getCurrentItem() - 1);
 		// return true;
-		case R.id.action_next:
-			// Advance to the next step in the wizard. If there is no next step,
-			// setCurrentItem
-			// will do nothing.
-			mPager.setCurrentItem(mPager.getCurrentItem() + 1);
-			return true;
+		// case R.id.action_next:
+		// // Advance to the next step in the wizard. If there is no next step,
+		// // setCurrentItem
+		// // will do nothing.
+		// mPager.setCurrentItem(mPager.getCurrentItem() + 1);
+		// return true;
 		case R.id.action_refresh:
 			// mPager.setCurrentItem(mPager.getCurrentItem());
-			int currentPosition = mPager.getCurrentItem();
-			setSlilePagerAdapter();
-			mPager.setCurrentItem(currentPosition);
-			// mPagerAdapter.notifyDataSetChanged();
+//			int currentPosition = mPager.getCurrentItem();
+//			setSlilePagerAdapter(Constants.PAGER_TYPE.REFRESH);
+//			mPager.setCurrentItem(currentPosition);
+			mPagerAdapter.notifyDataSetChanged();
 			return true;
 		case R.id.action_search:
 			DialogFragment newFragment = new DatePickerFragment();
 			newFragment.show(getFragmentManager(), "datePicker");
 			return true;
 		case R.id.action_statistic:
-			Intent intent = new Intent(this, StatisticActivity.class);		    		    
-		    //startActivity(intent);
-		    startActivityForResult(intent, 0);
+			Intent intent = new Intent(this, StatisticActivity.class);
+			// startActivity(intent);
+			startActivityForResult(intent, 0);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void clickPreviosDate(View arg0) {
+	public void clickPreviosDate() {
 		Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
-		mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-		invalidateOptionsMenu();
+		// mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+		// invalidateOptionsMenu();
 	}
 
 	/**
@@ -216,11 +216,11 @@ public class LotteryResultActivity extends FragmentActivity {
 	 * objects, in sequence.
 	 */
 	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-		LotteryResultActivity lrActivity;
+		LotteryResultActivity lrActivity;		
 
 		public ScreenSlidePagerAdapter(FragmentManager fm, LotteryResultActivity activity) {
 			super(fm);
-			lrActivity = activity;
+			lrActivity = activity;			
 		}
 
 		@Override
@@ -233,12 +233,18 @@ public class LotteryResultActivity extends FragmentActivity {
 			return Constants.NUM_PAGES;
 		}
 
-		// @Override
-		// public int getItemPosition(Object object) {
-		// // TODO Auto-generated method stub
-		// return POSITION_NONE;
-		// //return super.getItemPosition(object);
-		// }
+		@Override
+		public int getItemPosition(Object object) {
+			// TODO Auto-generated method stub
+			// return POSITION_NONE;
+			ScreenSlidePageFragment f = (ScreenSlidePageFragment) object;
+			if (f != null) {
+				f.update();
+			}
+			return super.getItemPosition(object);
+
+			//return super.getItemPosition(object);
+		}
 	}
 
 	public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {

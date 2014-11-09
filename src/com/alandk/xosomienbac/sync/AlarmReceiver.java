@@ -43,7 +43,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 		// displayNotificationOne(context, "");
 		lotteryDataSource = new LotteryDataSource(context);
 		lotteryDataSource.open();
-		checkHaveNewResult(context);
+		if (onResultTime()) {
+			checkHaveNewResult(context);
+		}
 	}
 
 	protected void displayNotificationNewResult(Context context, String displayText) {
@@ -211,8 +213,13 @@ public class AlarmReceiver extends BroadcastReceiver {
 	public boolean onResultTime() {
 		Calendar cal = Calendar.getInstance();
 		int hourOfDay = cal.get(Calendar.HOUR_OF_DAY);
+		int minute = cal.get(Calendar.MINUTE);
 		if (hourOfDay == 18) {
-			return true;
+			if (minute > 10 && minute < 40) {
+				return true;
+			} else {
+				return false;
+			}
 		} else {
 			return false;
 		}

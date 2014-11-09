@@ -35,7 +35,10 @@ public class LotteryUtils {
 	}
 	
 	public static AdRequest getAdRequest() {
-		AdRequest adRequest = new AdRequest.Builder().build();
+		AdRequest adRequest = new AdRequest.Builder()
+		.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+		.addTestDevice("41B087DC7B33AF1BCF2D97ABA2DDBBED")		
+		.build();
 		return adRequest;
 	}
 

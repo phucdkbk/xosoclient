@@ -1490,10 +1490,10 @@ containing a value of this type.
     
          */
         public static final int action_next=0x7f08002c;
-        public static final int action_refresh=0x7f08008e;
-        public static final int action_search=0x7f08008f;
-        public static final int action_statistic=0x7f080090;
-        public static final int action_undo=0x7f080091;
+        public static final int action_refresh=0x7f08008f;
+        public static final int action_search=0x7f080090;
+        public static final int action_statistic=0x7f080091;
+        public static final int action_undo=0x7f080092;
         public static final int activity_chooser_view_content=0x7f08003a;
         public static final int always=0x7f08001e;
         public static final int beginning=0x7f080023;
@@ -1520,7 +1520,7 @@ containing a value of this type.
         public static final int dialog=0x7f080021;
         public static final int disableHome=0x7f08001b;
         public static final int displayLoItnhieuInfo=0x7f080085;
-        public static final int displayLoganInfo=0x7f08008d;
+        public static final int displayLoganInfo=0x7f08008e;
         public static final int dropdown=0x7f080022;
         public static final int edit_query=0x7f080045;
         public static final int end=0x7f080025;
@@ -1567,14 +1567,15 @@ containing a value of this type.
         public static final int previousDate=0x7f080056;
         public static final int production=0x7f080007;
         public static final int progressBar=0x7f08005a;
-        public static final int progressBarLogan=0x7f080088;
+        public static final int progressBarLoItnhieu=0x7f080088;
+        public static final int progressBarLogan=0x7f08008c;
         public static final int progress_circular=0x7f08002a;
         public static final int progress_horizontal=0x7f08002b;
         public static final int radio=0x7f080044;
         public static final int rowAdvertising=0x7f08008a;
         public static final int rowDateResult=0x7f08005b;
         public static final int rowDisplayInfoLoItnhieu=0x7f080084;
-        public static final int rowDisplayInfoLogan=0x7f08008c;
+        public static final int rowDisplayInfoLogan=0x7f08008d;
         public static final int rowLoadingData=0x7f080059;
         public static final int rowLoadingDataLoItnhieu=0x7f080087;
         public static final int rowLoadingDataLogan=0x7f08008b;

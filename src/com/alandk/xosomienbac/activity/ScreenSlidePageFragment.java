@@ -41,6 +41,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.alandk.xosomienbac.common.Constants;
 import com.alandk.xosomienbac.common.DisplayResult;
 import com.alandk.xosomienbac.common.LotteryUtils;
@@ -91,31 +92,19 @@ public class ScreenSlidePageFragment extends Fragment {
 		return fragment;
 	}
 
-	public ScreenSlidePageFragment() {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		mPageNumber = getArguments().getInt(ARG_PAGE);		
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		// Inflate the layout containing a title and body text.
-		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page, container, false);
+	public void update() {
+		ViewGroup rootView = (ViewGroup) getView();
 		initDiplayResult(rootView);
-		int dateInt = getDefaultDisplayDate();		
+		int dateInt = getDefaultDisplayDate();
 		textTitleView = (TextView) rootView.findViewById(R.id.showResultTitle);
-		spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);	
+		spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);
+		spinner.setVisibility(View.GONE);
 		if (LotteryUtils.isConnectInternet(getActivity())) {
 			// Set loading information
 			textTitleView.setText("");
 			spinner.setVisibility(View.VISIBLE);
 			new DownloadWebpageTask(dateInt).execute("http://floating-ravine-3291.herokuapp.com/LotteryResult?date=" + dateInt);
 		} else {
-			spinner.setVisibility(View.GONE);
 			LotteryDBResult lotteryDBResult = LotteryResultActivity.getLotteryDBResultByDate(dateInt);
 			if (lotteryDBResult != null) {
 				// Set loading information
@@ -126,8 +115,50 @@ public class ScreenSlidePageFragment extends Fragment {
 				convertToDisplayResult(lotteryResult);
 			} else {
 				textTitleView.setText(mContext.getResources().getString(R.string.cannotGetResultTitle));
-			} 
-		}		
+			}
+		}
+		setDisplayDate(rootView, dateInt);
+		// lrActivity.clickPreviosDate();
+	}
+
+	public ScreenSlidePageFragment() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		mPageNumber = getArguments().getInt(ARG_PAGE);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		// Inflate the layout containing a title and body text.
+		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page, container, false);
+		initDiplayResult(rootView);
+		int dateInt = getDefaultDisplayDate();
+		textTitleView = (TextView) rootView.findViewById(R.id.showResultTitle);
+		spinner = (ProgressBar) rootView.findViewById(R.id.progressBar);
+		spinner.setVisibility(View.GONE);
+
+		LotteryDBResult lotteryDBResult = LotteryResultActivity.getLotteryDBResultByDate(dateInt);
+		if (lotteryDBResult != null) {
+			// Set loading information
+			String strDate = getDisplayDateFromDateInt(dateInt);
+			String dayOfWeek = getDayOfWeekFromStrDate(strDate);
+			textTitleView.setText(mContext.getResources().getString(R.string.resultTitle) + " " + dayOfWeek + " " + strDate);
+			Result lotteryResult = convertFromJsonToResultObject(lotteryDBResult.getResult());
+			convertToDisplayResult(lotteryResult);
+		} else {
+			if (LotteryUtils.isConnectInternet(getActivity())) {
+				// Set loading information
+				textTitleView.setText("");
+				spinner.setVisibility(View.VISIBLE);
+				new DownloadWebpageTask(dateInt).execute("http://floating-ravine-3291.herokuapp.com/LotteryResult?date=" + dateInt);
+			} else {
+				textTitleView.setText(mContext.getResources().getString(R.string.cannotGetResultTitle));
+			}
+		}
 		setDisplayDate(rootView, dateInt);
 		return rootView;
 	}
@@ -353,11 +384,12 @@ public class ScreenSlidePageFragment extends Fragment {
 				if (result != null && !result.isEmpty() && result.length() > 2) {
 					Result lotteryResult = convertFromJsonToResultObject(result);
 					Gson gson = new Gson();
-					if (lotteryResult.isHasFullValue()) {
-						LotteryResultActivity.createOrUpdateLotteryDBResult(date, gson.toJson(lotteryResult));
+					if (lotteryResult != null) {
+						if (lotteryResult.isHasFullValue()) {
+							LotteryResultActivity.createOrUpdateLotteryDBResult(date, gson.toJson(lotteryResult));
+						}
+						convertToDisplayResult(lotteryResult);
 					}
-					convertToDisplayResult(lotteryResult);
-
 					// Remove loading progess
 					String strDate = getDisplayDateFromDateInt(date);
 					String dayOfWeek = getDayOfWeekFromStrDate(strDate);
@@ -368,7 +400,7 @@ public class ScreenSlidePageFragment extends Fragment {
 					spinner.setVisibility(View.GONE);
 				}
 			} catch (Exception e) {
-				Log.e("E", e.getMessage());
+				Log.e("E", e.getMessage(), e);
 				// throw e;
 			}
 
